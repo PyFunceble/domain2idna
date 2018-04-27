@@ -27,13 +27,13 @@ $ pip install -e .
 #!/usr/bin/env python3
 
 """
-This module use domains2idna to convert a given domain.
+This module uses domains2idna to convert a given domain.
 
 Author:
     Nissar Chababy, @funilrys, contactTATAfunilrysTODTODcom
 
 Contributors:
-    Let's contribute to domains2idna!!
+    Let's contribute to this example!!
 
 Repository:
     https://github.com/funilrys/domain2idna
@@ -48,7 +48,7 @@ DOMAINS = [
     "bittréẋ.com", "bịllogram.com", "coinbȧse.com", "cryptopiạ.com", "cṙyptopia.com"
 ]
 
-# We activate the automatical reset of string formating
+# We activate the automatical reset of string formatting
 initiate(True)
 
 # The following return the result of the whole loop.
