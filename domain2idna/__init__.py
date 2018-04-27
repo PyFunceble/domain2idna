@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-domain2idna - Python module/library to convert a domain or a file with a list
+domain2idna - A tool to convert a domain or a file with a list
 of domain to the famous IDNA format.
 
 This submodule is the main entry of the module/library.
@@ -60,7 +60,7 @@ def domain(domain_to_convert, output=None):
 
     if domain_to_convert:
         converted = Core(domain_to_convert).to_idna()
-        
+
         if output:
             File(output).write(converted, overwrite=True)
         else:
@@ -105,7 +105,8 @@ def command():
         initiate(True)
 
         parser = argparse.ArgumentParser(
-            description="A module/library which convert a given domain to the famous IDNS format.",
+            description="domain2idna - A tool to convert a domain or a file with \
+            a list of domain to the famous IDNA format.",
             epilog="Crafted with %s by %s"
             % (
                 Fore.RED + "♥" + Fore.RESET,

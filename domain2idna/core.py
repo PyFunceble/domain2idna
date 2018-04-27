@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """
-domain2idna - Python module/library to convert a domain or a file with a list
+domain2idna - A tool to convert a domain or a file with a list
 of domain to the famous IDNA format.
 
 This module is the core of the module/library. It contains the brain of the program.

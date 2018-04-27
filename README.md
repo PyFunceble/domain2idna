@@ -67,14 +67,15 @@ print(
 
     usage: domain2idna [-h] [-d DOMAIN] [-f FILE] [-o OUTPUT]
 
-    A module/library which convert a given domain to the famous IDNS format.
+    domain2idna - A tool to convert a domain or a file with a list of domain to
+    the famous IDNA format.
 
     optional arguments:
-      -h, --help            show this help message and exit
-      -d DOMAIN, --domain DOMAIN
-                            Set the domain to convert.
-      -f FILE, --file FILE  Set the domain to convert.
-      -o OUTPUT, --output OUTPUT
-                            Set the file where we write the converted domain(s).
+    -h, --help            show this help message and exit
+    -d DOMAIN, --domain DOMAIN
+                        Set the domain to convert.
+    -f FILE, --file FILE  Set the domain to convert.
+    -o OUTPUT, --output OUTPUT
+                        Set the file where we write the converted domain(s).
 
     Crafted with ♥ by Nissar Chababy (Funilrys)
