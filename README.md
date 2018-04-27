@@ -1,6 +1,7 @@
 # domains2idna
 
-## Python module/library to convert a domain or a file with a list of domain to the famous IDNA format.
+## A tool to convert a domain or a file with a list of domain to the famous IDNA format.
+
 
 * * *
 
