@@ -85,7 +85,7 @@ def file(file_to_convert, output=None):
 
         try:
             to_convert = File(file_to_convert).read().split("\n")
-        except UnicodeEncodeError:
+        except (UnicodeEncodeError, UnicodeDecodeError):
             to_convert = File(file_to_convert).read("ISO-8859-1").split("\n")
 
         converted = Core(to_convert).to_idna()
