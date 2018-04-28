@@ -14,8 +14,15 @@ $ python setup.py test
 
 # Installation
 
+You can install domain2idna with two ways.
+
 ```shell
-# This install all dependencies along with domain2idna
+# This install domain2idna without having to manually clone the repository
+$ pip install -e git+https://github.com/funilrys/domain2idna.git#egg=domain2idna
+```
+
+```shell
+# This install all dependencies along with domain2idna after you cloned the repository
 $ pip install -e .
 ```
 
