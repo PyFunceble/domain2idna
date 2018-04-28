@@ -47,6 +47,32 @@ class Core(object):  # pylint: disable=too-few-public-methods
 
     def __init__(self, domains):
         self.domains = domains
+        self.to_ignore = [
+            "0.0.0.0",
+            "localhost",
+            "127.0.0.1",
+            "localdomain",
+            "local",
+            "broadcasthost",
+            "allhosts",
+            "allnodes",
+            "allrouters",
+            "localnet",
+            "loopback",
+            "mcastprefix",
+        ]
+
+    @classmethod
+    def convert_it_to_idna(cls, string):
+        """
+        This method convert the given string to IDNA.
+
+        Argument:
+            - string: str
+                The string to convert.
+        """
+
+        return string.encode("idna").decode("utf-8")
 
     def to_idna(self):
         """
@@ -64,9 +90,22 @@ class Core(object):  # pylint: disable=too-few-public-methods
             result = []
 
             for domain in self.domains:
-                try:
-                    result.append(domain.encode("idna").decode("utf-8"))
-                except UnicodeError:
+                if not domain.startswith("#"):
+                    splited_domain = domain.split()
+                    local_result = []
+
+                    for element in splited_domain:
+
+                        if element not in self.to_ignore:
+                            try:
+                                local_result.append(self.convert_it_to_idna(element))
+                            except UnicodeError:
+                                local_result.append(element)
+                        else:
+                            local_result.append(element)
+
+                    result.append(" ".join(local_result))
+                else:
                     result.append(domain)
 
             return result
