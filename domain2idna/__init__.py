@@ -91,7 +91,7 @@ def file(file_to_convert, output=None):
         converted = Core(to_convert).to_idna()
 
         if output:
-            File(output).write(converted, overwrite=True)
+            File(output).write('\n'.join(converted), overwrite=True)
         else:
             print(converted)
 
