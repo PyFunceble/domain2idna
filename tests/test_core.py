@@ -73,6 +73,7 @@ class TestCore(TestCase):
             "coinbȧse.com",
             "cryptopiạ.com",
             "cṙyptopia.com",
+            "0.0.0.0 ṁỵetherwallet.com",
         ]
 
         expected = [
@@ -81,6 +82,7 @@ class TestCore(TestCase):
             "xn--coinbse-30c.com",
             "xn--cryptopi-ux0d.com",
             "xn--cyptopia-4e0d.com",
+            "0.0.0.0 xn--etherwallet-tv8eq7f.com",
         ]
         actual = Core(domains_to_test).to_idna()
 
