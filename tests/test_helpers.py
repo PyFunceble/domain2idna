@@ -55,7 +55,7 @@ class TestFile(TestCase):
         This method test helpers.File.write along with helpers.File.delete.
         """
 
-        expected = "Hello, World! I'm domain2idna"
+        expected = "Hello, World! I'm PyFunceble"
         File("hi").write(expected)
 
         with open("hi") as file:
@@ -74,7 +74,7 @@ class TestFile(TestCase):
         This metthod test helpers.File.write along with helpers.File.delete.
         """
 
-        expected = "Hello, World! I'm domain2idna"
+        expected = "Hello, World! I'm PyFunceble"
         File("hi").write(expected)
 
         with open("hi") as file:

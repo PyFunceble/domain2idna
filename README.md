@@ -2,7 +2,6 @@
 
 ## A tool to convert a domain or a file with a list of domain to the famous IDNA format.
 
-
 * * *
 
 # Tests
@@ -18,11 +17,12 @@ You can install domain2idna with two ways.
 
 ```shell
 # This install domain2idna without having to manually clone the repository
-$ pip install -e git+https://github.com/funilrys/domain2idna.git#egg=domain2idna
+$ pip install git+https://github.com/funilrys/domain2idna.git#egg=domain2idna
 ```
 
 ```shell
-# This install all dependencies along with domain2idna after you cloned the repository
+# This install all dependencies along with domain2idna after you cloned the repository.
+# Usage: developement only.
 $ pip install -e .
 ```
 

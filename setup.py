@@ -49,12 +49,24 @@ def _test_suite():
     return test_suite
 
 
+def _get_requirements():
+    """
+    This function extract all requirements from requirements.txt.
+    """
+
+    with open("requirements.txt") as file:
+        requirements = file.read().splitlines()
+
+    return requirements
+
+
 setup(
     name="domain2idna",
-    version="1.0.0",
+    version="1.1.0",
     description="Python module/library to convert a domain or a file with a list \
      of domain to the famous IDNA format.",
     long_description=open("README").read(),
+    install_requires=_get_requirements(),
     author="funilrys",
     author_email="contact@funilrys.com",
     license="MIT https://raw.githubusercontent.com/funilrys/domain2idna/master/LICENSE",

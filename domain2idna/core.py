@@ -86,7 +86,7 @@ class Core(object):  # pylint: disable=too-few-public-methods
             The domain in IDNA format.
         """
 
-        if isinstance(self.domains, list):
+        if isinstance(self.domains, list):  # pylint: disable=too-many-nested-blocks
             result = []
 
             for domain in self.domains:
@@ -110,9 +110,8 @@ class Core(object):  # pylint: disable=too-few-public-methods
 
             return result
 
-        else:
-            try:
-                return self.domains.encode("idna").decode("utf-8")
+        try:
+            return self.domains.encode("idna").decode("utf-8")
 
-            except UnicodeError:
-                return self.domains
+        except UnicodeError:
+            return self.domains
