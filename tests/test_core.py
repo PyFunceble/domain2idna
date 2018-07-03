@@ -68,23 +68,46 @@ class TestCore(TestCase):
         """
 
         domains_to_test = [
-            "bittréẋ.com",
             "bịllogram.com",
-            "coinbȧse.com",
+            "bittréẋ.com",
             "cryptopiạ.com",
+            "coinbȧse.com",
             "cṙyptopia.com",
             "0.0.0.0 ṁỵetherwallet.com",
         ]
 
         expected = [
-            "xn--bittr-fsa6124c.com",
             "xn--bllogram-g80d.com",
-            "xn--coinbse-30c.com",
+            "xn--bittr-fsa6124c.com",
             "xn--cryptopi-ux0d.com",
+            "xn--coinbse-30c.com",
             "xn--cyptopia-4e0d.com",
             "0.0.0.0 xn--etherwallet-tv8eq7f.com",
         ]
         actual = Core(domains_to_test).to_idna()
+
+        self.assertEqual(expected, actual)
+
+    def test_commented_line(self):
+        """
+        This method test that the comments are returned normally.
+        """
+
+        comments = [
+            "# Hello, World!",
+            "# This is another commented line",
+            "# This is a commented line with bittréẋ.com",
+            "# cryptopiạ.com",
+        ]
+
+        expected = [
+            "# Hello, World!",
+            "# This is another commented line",
+            "# This is a commented line with bittréẋ.com",
+            "# cryptopiạ.com",
+        ]
+
+        actual = Core(comments).to_idna()
 
         self.assertEqual(expected, actual)
 

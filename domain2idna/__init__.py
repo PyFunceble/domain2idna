@@ -58,11 +58,11 @@ def domain(domain_to_convert, output=None):
             The output of the conversion. If not set, we output to stdout.
     """
 
-    if domain_to_convert:
+    if domain_to_convert and domain_to_convert.strip():
         converted = Core(domain_to_convert).to_idna()
 
         if output:
-            File(output).write(converted, overwrite=True)
+            File(output).write(converted)
         else:
             print(converted)
     else:
@@ -85,18 +85,18 @@ def file(file_to_convert, output=None):
 
         try:
             to_convert = File(file_to_convert).read().split("\n")
-        except (UnicodeEncodeError, UnicodeDecodeError):
+        except (UnicodeEncodeError, UnicodeDecodeError): # pragma: no cover
             to_convert = File(file_to_convert).read("ISO-8859-1").split("\n")
 
         converted = Core(to_convert).to_idna()
 
         if output:
-            File(output).write("\n".join(converted), overwrite=True)
+            File(output).write("\n".join(converted))
         else:
             print("\n".join(converted))
 
 
-def command():
+def command(): # pragma: no cover
     """
     This function is the main entry of the command line script.
     """

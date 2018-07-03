@@ -83,7 +83,7 @@ class TestFile(TestCase):
         self.assertEqual(expected, actual)
 
         expected = "Hello, World! Python is great, you should consider learning it!"
-        File("hi").write(expected, overwrite=True)
+        File("hi").write(expected)
 
         with open("hi") as file:
             actual = file.read()
@@ -110,6 +110,26 @@ class TestFile(TestCase):
         expected = False
         File("hi").delete()
         actual = path.isfile("hi")
+
+        self.assertEqual(expected, actual)
+
+    def test_delete_not_exist(self):
+        """
+        This method test helpers.File.delete for the case that the file does
+        not exists.
+        """
+
+        filename = "this_file_is_a_ghost"
+
+        expected = False
+        actual = path.isfile(filename)
+
+        self.assertEqual(expected, actual)
+
+        File(filename).delete()
+
+        expected = False
+        actual = path.isfile(filename)
 
         self.assertEqual(expected, actual)
 

@@ -55,22 +55,14 @@ class File(object):
         self.file = file
         self.auto_encoding = auto_encoding
 
-    def write(self, data_to_write, overwrite=False):
+    def write(self, data_to_write):
         """
         Write or append data into the given file path.
-
-        Argument:
-            - data_to_write: str
-                The data to write.
         """
 
         if data_to_write and isinstance(data_to_write, str):
-            if overwrite or not path.isfile(self.file):
-                with open(self.file, "w", encoding="utf-8") as file:
-                    file.write(data_to_write)
-            else:
-                with open(self.file, "a", encoding="utf-8") as file:
-                    file.write(data_to_write)
+            with open(self.file, "w", encoding="utf-8") as file:
+                file.write(data_to_write)
 
     def read(self, encoding=None):
         """
