@@ -39,7 +39,7 @@ License:
     SOFTWARE.
 """
 
-from os import path, remove
+from os import remove
 
 
 class File(object):

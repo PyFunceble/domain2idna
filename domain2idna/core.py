@@ -98,7 +98,7 @@ class Core(object):  # pylint: disable=too-few-public-methods
                         if element not in self.to_ignore:
                             try:
                                 local_result.append(self.convert_it_to_idna(element))
-                            except UnicodeError: # pragma: no cover
+                            except UnicodeError:  # pragma: no cover
                                 local_result.append(element)
                         else:
                             local_result.append(element)
@@ -112,5 +112,5 @@ class Core(object):  # pylint: disable=too-few-public-methods
         try:
             return self.domains.encode("idna").decode("utf-8")
 
-        except UnicodeError: # pragma: no cover
+        except UnicodeError:  # pragma: no cover
             return self.domains

@@ -46,7 +46,8 @@ from colorama import init as initiate
 from .core import Core
 from .helpers import File
 
-VERSION = "1.2.1"
+VERSION = "1.2.2"
+
 
 def domain(domain_to_convert, output=None):
     """
@@ -86,7 +87,7 @@ def file(file_to_convert, output=None):
 
         try:
             to_convert = File(file_to_convert).read().split("\n")
-        except (UnicodeEncodeError, UnicodeDecodeError): # pragma: no cover
+        except (UnicodeEncodeError, UnicodeDecodeError):  # pragma: no cover
             to_convert = File(file_to_convert).read("ISO-8859-1").split("\n")
 
         converted = Core(to_convert).to_idna()
@@ -97,7 +98,7 @@ def file(file_to_convert, output=None):
             print("\n".join(converted))
 
 
-def command(): # pragma: no cover
+def command():  # pragma: no cover
     """
     This function is the main entry of the command line script.
     """

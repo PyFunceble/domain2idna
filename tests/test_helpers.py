@@ -39,10 +39,11 @@ License:
     SOFTWARE.
 """
 
+from os import path
 from unittest import TestCase
 from unittest import main as launch_tests
 
-from domain2idna.helpers import File, path
+from domain2idna.helpers import File
 
 
 class TestFile(TestCase):
