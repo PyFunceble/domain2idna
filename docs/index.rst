@@ -28,6 +28,14 @@ Want to learn how you can use :code:`domain2idna` ? Here we go!
    usage/from-terminal
    usage/as-a-module
 
+Reporting issues
+****************
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Reporting issue
+
+   reporting-issues/index
 
 Indices and tables
 ==================
