@@ -43,11 +43,12 @@ License:
 
 import sys
 from io import StringIO
+from os import path
 from unittest import TestCase
 from unittest import main as launch_tests
 
 from domain2idna import domain, file
-from domain2idna.helpers import File, path
+from domain2idna.helpers import File
 
 
 class BaseStdout(TestCase):
