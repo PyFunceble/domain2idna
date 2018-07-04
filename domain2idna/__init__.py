@@ -39,6 +39,8 @@ License:
     SOFTWARE.
 """
 
+# pylint: disable=bad-continuation
+
 import argparse
 from colorama import Fore, Style
 from colorama import init as initiate
@@ -49,15 +51,40 @@ from .helpers import File
 VERSION = "1.2.2"
 
 
+def get(domain_to_convert):
+    """
+    This function is a passerelle between the front
+    and the backend of this module.
+
+    Argument:
+        - domain_to_convert: str
+            The domain to convert.
+
+    Returns: str|list
+        str: if a string is given.
+        list: if a list is given.
+    """
+
+    if domain_to_convert:
+        return Core(domain_to_convert).to_idna()
+    return domain_to_convert
+
+
 def domain(domain_to_convert, output=None):
     """
     This function convert the given domain to IDNA format.
 
     Arguments:
         - domain_to_convert: str
-            The domain to convert
+            The domain to convert.
         - output: str
             The output of the conversion. If not set, we output to stdout.
+
+    Returns: stdout
+        Print the result on screen.
+
+    Raises: Exception
+        If a given domain_to_conveert is empty.
     """
 
     if domain_to_convert and domain_to_convert.strip():
@@ -80,6 +107,9 @@ def file(file_to_convert, output=None):
             The file to convert
         - output: str
             The output of the conversion. If not set, we output to stdout.
+
+    Returns: stdout
+        print the result on screen.
     """
 
     if file_to_convert:

@@ -23,7 +23,7 @@ $ pip install git+https://github.com/funilrys/domain2idna.git#egg=domain2idna
 ```shell
 # This install all dependencies along with domain2idna after you cloned the repository.
 # Usage: developement only.
-$ pip install -e .
+$ python setup.py test
 ```
 
 # Usage
@@ -45,30 +45,17 @@ Contributors:
 Repository:
     https://github.com/funilrys/domain2idna
 """
-
-from colorama import Style
-from colorama import init as initiate
-
-from domain2idna.core import Core
+from domain2idna import domain as domain2idna
 
 DOMAINS = [
     "bittréẋ.com", "bịllogram.com", "coinbȧse.com", "cryptopiạ.com", "cṙyptopia.com"
 ]
 
-# We activate the automatical reset of string formatting
-initiate(True)
-
 # The following return the result of the whole loop.
-print(
-    "%sList of converted domains:%s %s"
-    % (Style.BRIGHT, Style.RESET_ALL, Core(DOMAINS).to_idna())
-)
+print("List of converted domains: %s" % domain2idna(DOMAINS, True))
 
 # The following return the result of only one element.
-print(
-    "%sString representing a converted domain:%s %s"
-    % (Style.BRIGHT, Style.RESET_ALL, Core(DOMAINS[-1]).to_idna())
-)
+print( "String representing a converted domain: %s"% domain2idna(DOMAINS[-1], True))
 ```
 
 ## Command-Line
