@@ -1,5 +1,5 @@
 #######################################
-Welcome to domain2idna's documentation!
+The tool to convert domains to the famous IDNA format.
 #######################################
 
 
@@ -36,6 +36,16 @@ Reporting issues
    :caption: Reporting issue
 
    reporting-issues/index
+
+Code documentation
+******************
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Code documentation
+
+   code
+
 
 Indices and tables
 ==================
