@@ -222,9 +222,15 @@ class TestInit(BaseStdout):
         self.assertEqual(expected, actual)
 
         File(file_to_pass).delete()
+        File(output_file).delete()
 
         expected = False
         actual = path.isfile(file_to_pass)
+
+        self.assertEqual(expected, actual)
+
+        expected = False
+        actual = path.isfile(output_file)
 
         self.assertEqual(expected, actual)
 
