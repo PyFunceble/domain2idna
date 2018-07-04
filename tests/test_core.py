@@ -96,6 +96,7 @@ class TestCore(TestCase):
         comments = [
             "# Hello, World!",
             "# This is another commented line",
+            "cryptopiạ.com",
             "# This is a commented line with bittréẋ.com",
             "# cryptopiạ.com",
         ]
@@ -103,6 +104,7 @@ class TestCore(TestCase):
         expected = [
             "# Hello, World!",
             "# This is another commented line",
+            "xn--cryptopi-ux0d.com",
             "# This is a commented line with bittréẋ.com",
             "# cryptopiạ.com",
         ]
