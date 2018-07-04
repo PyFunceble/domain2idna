@@ -10,7 +10,9 @@ Want to install and test :code:`domain2idna` ? Let's get started!
 .. toctree::
    :maxdepth: 2
 
-   installation/index
+   installation/requirements
+   installation/get-domain2idna
+   installation/first-steps
 
 
 Indices and tables
