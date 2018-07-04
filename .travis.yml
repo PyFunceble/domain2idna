@@ -22,7 +22,7 @@ install:
 script:
   - coverage run setup.py test && python3 setup.py install
   - domain2idna -d аррӏе.com
-  - domain2idna .travis/list_of_domain
+  - domain2idna -f .travis/list_of_domain
   - echo "Tests linting " && pylint tests/*.py && echo "domain2idna linting" && pylint domain2idna
 
 after_success:
