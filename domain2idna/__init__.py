@@ -162,6 +162,10 @@ def command():  # pragma: no cover
             help="Set the file where we write the converted domain(s).",
         )
 
+        parser.add_argument(
+            "-v", "--version", action="version", version="%(prog)s " + VERSION
+        )
+
         args = parser.parse_args()
 
         if args.domain:
