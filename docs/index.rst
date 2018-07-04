@@ -16,6 +16,18 @@ Want to install and test :code:`domain2idna` ? Let's get started!
    installation/get-domain2idna
    installation/first-steps
 
+Usage
+*****
+
+Want to learn how you can use :code:`domain2idna` ? Here we go!
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Usage
+
+   usage/from-terminal
+   usage/as-a-module
+
 
 Indices and tables
 ==================
