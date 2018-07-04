@@ -1,6 +1,6 @@
 # domains2idna
 
-## The tool to convert domains the famous IDNA format.
+## The tool to convert domains to the famous IDNA format.
 
 * * *
 
