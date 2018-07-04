@@ -1,5 +1,5 @@
 Requirements
-============
+------------
 
 Here is the list of requirements:
 
@@ -7,7 +7,7 @@ Here is the list of requirements:
 -   :code:`colorama`
 
 Python 3.x
-----------
+^^^^^^^^^^
 
 As we want to give a priority to Python 3, Python 3 is required.
 
