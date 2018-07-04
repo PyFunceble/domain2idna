@@ -34,6 +34,7 @@ License:
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
 """
+from re import compile as comp
 from unittest import TestLoader
 
 from setuptools import setup
@@ -60,9 +61,24 @@ def _get_requirements():
     return requirements
 
 
+def _get_version():
+    """
+    This function will extract the version from domain2idna/__init__.py
+    """
+
+    to_match = comp(r'VERSION\s=\s"(.*)"\n')
+    extracted = to_match.findall(
+        open("domain2idna/__init__.py", encoding="utf-8").read()
+    )[
+        0
+    ]
+
+    return ".".join(list(filter(lambda x: x.isdigit(), extracted.split("."))))
+
+
 setup(
     name="domain2idna",
-    version="1.1.0",
+    version=_get_version(),
     description="Python module/library to convert a domain or a file with a list \
      of domain to the famous IDNA format.",
     long_description=open("README").read(),
