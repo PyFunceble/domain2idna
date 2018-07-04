@@ -153,7 +153,7 @@ def command():  # pragma: no cover
             "-d", "--domain", type=str, help="Set the domain to convert."
         )
 
-        parser.add_argument("-f", "--file", type=str, help="Set the domain to convert.")
+        parser.add_argument("-f", "--file", type=str, help="Set the file to read to get the domain(s) to convert.")
 
         parser.add_argument(
             "-o",

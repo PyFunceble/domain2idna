@@ -68,9 +68,9 @@ print( "String representing a converted domain: %s"% domain2idna(DOMAINS[-1], Tr
     optional arguments:
     -h, --help            show this help message and exit
     -d DOMAIN, --domain DOMAIN
-                        Set the domain to convert.
-    -f FILE, --file FILE  Set the domain to convert.
+                            Set the domain to convert.
+    -f FILE, --file FILE  Set the file to read to get the domain(s) to convert.
     -o OUTPUT, --output OUTPUT
-                        Set the file where we write the converted domain(s).
+                            Set the file where we write the converted domain(s).
 
     Crafted with ♥ by Nissar Chababy (Funilrys)
