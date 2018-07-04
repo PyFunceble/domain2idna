@@ -12,10 +12,15 @@ Author:
 Contributors:
     Let's contribute to domains2idna!!
 
-Repository:
+Project link:
     https://github.com/funilrys/domain2idna
 
+Project documentation:
+    http://domain2idna.readthedocs.ios
+
 License:
+::
+
     MIT License
 
     Copyright (c) 2018 Nissar Chababy
@@ -48,7 +53,7 @@ from colorama import init as initiate
 from .core import Core
 from .helpers import File
 
-VERSION = "1.2.5"
+VERSION = "1.3.0"
 
 
 def get(domain_to_convert):
@@ -57,12 +62,14 @@ def get(domain_to_convert):
     and the backend of this module.
 
     Argument:
-        - domain_to_convert: str
+        domain_to_convert: str
             The domain to convert.
 
-    Returns: str|list
-        str: if a string is given.
-        list: if a list is given.
+    Returns: 
+        str: 
+            if a string is given.
+        list: 
+            if a list is given.
     """
 
     if domain_to_convert:
@@ -84,7 +91,7 @@ def domain(domain_to_convert, output=None):
         Print the result on screen.
 
     Raises: Exception
-        If a given domain_to_conveert is empty.
+        If the given domain_to_convert is empty.
     """
 
     if domain_to_convert and domain_to_convert.strip():

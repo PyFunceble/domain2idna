@@ -12,8 +12,11 @@ Author:
 Contributors:
     Let's contribute to domains2idna!!
 
-Repository:
+Project link:
     https://github.com/funilrys/domain2idna
+
+Project documentation:
+    http://domain2idna.readthedocs.ios
 
 License:
     MIT License
@@ -47,13 +50,12 @@ class File(object):
     File treatment/manipulations.
 
     Argument:
-        file: str
+        filename: str
             A path to the file to manipulate.
     """
 
-    def __init__(self, file, auto_encoding=False):
-        self.file = file
-        self.auto_encoding = auto_encoding
+    def __init__(self, filename):
+        self.file = filename
 
     def write(self, data_to_write):
         """
@@ -68,8 +70,13 @@ class File(object):
         """
         Read a given file path and return its content.
 
-        Returns: str
-            The content of the given file path.
+        Argument:
+            encoding: str
+                The encoding to use when opening the file.
+
+        Returns:
+            str
+                The content of the given file path.
         """
 
         if not encoding:
@@ -83,6 +90,9 @@ class File(object):
     def delete(self):
         """
         Delete a given file path.
+
+        Note:
+            We handle the case that the file does not exist by doing and raising nothing.
         """
 
         try:

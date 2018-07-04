@@ -12,8 +12,11 @@ Author:
 Contributors:
     Let's contribute to domains2idna!!
 
-Repository:
+Project link:
     https://github.com/funilrys/domain2idna
+
+Project documentation:
+    http://domain2idna.readthedocs.ios
 
 License:
     MIT License
@@ -43,6 +46,10 @@ License:
 class Core(object):  # pylint: disable=too-few-public-methods
     """
     Brain of the program
+
+    Argument:
+        domains: str or list
+            The domain or domains to convert.
     """
 
     def __init__(self, domains):
@@ -63,13 +70,17 @@ class Core(object):  # pylint: disable=too-few-public-methods
         ]
 
     @classmethod
-    def convert_it_to_idna(cls, string):
+    def _convert_it_to_idna(cls, string):
         """
         This method convert the given string to IDNA.
 
         Argument:
-            - string: str
+            string: str
                 The string to convert.
+
+        Returns:
+            str
+                The converted string.
         """
 
         return string.encode("idna").decode("utf-8")
@@ -78,12 +89,11 @@ class Core(object):  # pylint: disable=too-few-public-methods
         """
         This method convert a domain from the given list.
 
-        Returns: str or list
-            - str:
+        Returns:
+            str:
                 if a single domain is given.
-            - list:
+            list:
                 If a list of domain is given.
-            The domain in IDNA format.
         """
 
         if isinstance(self.domains, list):  # pylint: disable=too-many-nested-blocks
@@ -97,7 +107,7 @@ class Core(object):  # pylint: disable=too-few-public-methods
                     for element in splited_domain:
                         if element not in self.to_ignore:
                             try:
-                                local_result.append(self.convert_it_to_idna(element))
+                                local_result.append(self._convert_it_to_idna(element))
                             except UnicodeError:  # pragma: no cover
                                 local_result.append(element)
                         else:
@@ -110,7 +120,6 @@ class Core(object):  # pylint: disable=too-few-public-methods
             return result
 
         try:
-            return self.domains.encode("idna").decode("utf-8")
-
+            return self._convert_it_to_idna(self.domains)
         except UnicodeError:  # pragma: no cover
             return self.domains

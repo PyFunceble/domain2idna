@@ -12,8 +12,11 @@ Author:
 Contributors:
     Let's contribute to domains2idna!!
 
-Repository:
+Project link:
     https://github.com/funilrys/domain2idna
+
+Project documentation:
+    http://domain2idna.readthedocs.ios
 
 License:
     MIT License
