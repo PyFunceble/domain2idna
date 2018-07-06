@@ -50,7 +50,7 @@ from os import path
 from unittest import TestCase
 from unittest import main as launch_tests
 
-from domain2idna import domain, file
+from domain2idna import domain, file, get
 from domain2idna.helpers import File
 
 
@@ -101,6 +101,8 @@ class TestInit(BaseStdout):
             "0.0.0.0 xn--etherwallet-tv8eq7f.com",
         ]
 
+        self.empty_inputs = ["", " ", "  ", None, False]
+
     def test_domain(self):
         """
         This method will test domain2idna.domain()
@@ -146,9 +148,7 @@ class TestInit(BaseStdout):
         that an empty string is given.
         """
 
-        domain_to_test = ["", " ", "  ", None, False]
-
-        for empty_domain in domain_to_test:
+        for empty_domain in self.empty_inputs:
             self.assertRaisesRegex(
                 Exception,
                 r"Please\sgive\sus\sa\sdomain\.",
@@ -236,6 +236,23 @@ class TestInit(BaseStdout):
         expected = False
         actual = path.isfile(output_file)
 
+        self.assertEqual(expected, actual)
+
+    def test_get(self):
+        """
+        This method will test domain2idna.get
+        """
+
+        expected = self.converted
+        actual = get(self.domains_to_test)
+        self.assertEqual(expected, actual)
+
+        expected = self.empty_inputs
+        actual = get(self.empty_inputs)
+        self.assertEqual(expected, actual)
+
+        expected = None
+        actual = get(None)
         self.assertEqual(expected, actual)
 
 

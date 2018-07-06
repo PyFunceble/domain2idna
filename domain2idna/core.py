@@ -100,7 +100,7 @@ class Core(object):  # pylint: disable=too-few-public-methods
             result = []
 
             for domain in self.domains:
-                if not domain.startswith("#"):
+                if domain and domain.strip() and not domain.startswith("#"):
                     splited_domain = domain.split()
                     local_result = []
 
@@ -121,5 +121,6 @@ class Core(object):  # pylint: disable=too-few-public-methods
 
         try:
             return self._convert_it_to_idna(self.domains)
+
         except UnicodeError:  # pragma: no cover
             return self.domains

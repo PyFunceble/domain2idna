@@ -53,7 +53,7 @@ from colorama import init as initiate
 from .core import Core
 from .helpers import File
 
-VERSION = "1.3.0"
+VERSION = "1.4.0"
 
 
 def get(domain_to_convert):
@@ -65,15 +65,16 @@ def get(domain_to_convert):
         domain_to_convert: str
             The domain to convert.
 
-    Returns: 
-        str: 
+    Returns:
+        str:
             if a string is given.
-        list: 
+        list:
             if a list is given.
     """
 
     if domain_to_convert:
         return Core(domain_to_convert).to_idna()
+
     return domain_to_convert
 
 
@@ -160,7 +161,12 @@ def command():  # pragma: no cover
             "-d", "--domain", type=str, help="Set the domain to convert."
         )
 
-        parser.add_argument("-f", "--file", type=str, help="Set the file to read to get the domain(s) to convert.")
+        parser.add_argument(
+            "-f",
+            "--file",
+            type=str,
+            help="Set the file to read to get the domain(s) to convert.",
+        )
 
         parser.add_argument(
             "-o",
