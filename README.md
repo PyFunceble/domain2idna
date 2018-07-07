@@ -2,11 +2,11 @@
 
 ## The tool to convert domains to the famous IDNA format.
 
-The objective of this project is to provide a tool for list or hosts file maintainer that can convertible domain to the PunyCode/IDNA format.
+The objective of this project is to provide a tool for list or hosts file maintainer that can convertible domain to the Punycode/IDNA format.
 
 * * *
 
-## Documentation as place to be!
+## Documentation as the place to be!
 
 Want to know more about **domain2idna**?
 We invite you to read the documentation at https://domain2idna.readthedocs.io!
@@ -26,10 +26,10 @@ $ chromium _builld/html/index.html
 
 ## Main Features
 
-- Read a given domain and convert it to the PunyCode/IDNA format.
-- Read a file and convert all non commented line to the PunyCode/IDNA format.
-- Print the converted data on screen.
-- Save into a file the converte data.
+- Read a given domain and convert it to the Punycode/IDNA format.
+- Read a file and convert all non-commented line to the Punycode/IDNA format.
+- Print the converted data on the screen.
+- Save into a file the converted data.
 - Return the converted data (when used as a module).
 - Ignore commented inputs (starts with `#`)
 
