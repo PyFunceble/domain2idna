@@ -76,6 +76,7 @@ def _get_version():
 
     return ".".join(list(filter(lambda x: x.isdigit(), extracted.split("."))))
 
+
 def _get_long_description():
     """
     This function return the long description.
@@ -86,6 +87,7 @@ def _get_long_description():
 
     except (IOError, ImportError):
         return open("README.md", encoding="utf-8").read()
+
 
 setup(
     name="domain2idna",
