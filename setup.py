@@ -37,6 +37,7 @@ License:
 from re import compile as comp
 from unittest import TestLoader
 
+from pypandoc import convert
 from setuptools import setup
 
 
@@ -75,13 +76,23 @@ def _get_version():
 
     return ".".join(list(filter(lambda x: x.isdigit(), extracted.split("."))))
 
+def _get_long_description():
+    """
+    This function return the long description.
+    """
+
+    try:
+        return convert("README.md", "rst")
+
+    except (IOError, ImportError):
+        return open("README.md", encoding="utf-8").read()
 
 setup(
     name="domain2idna",
     version=_get_version(),
     description="A tool to convert a domain or a file with a list of domain to the"
     "famous IDNA format.",
-    long_description=open("README").read(),
+    long_description=_get_long_description(),
     install_requires=_get_requirements(),
     author="funilrys",
     author_email="contact@funilrys.com",
@@ -96,7 +107,6 @@ setup(
         "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",
         "Programming Language :: Python",
-        "Programming Language :: Python :: 2",
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
     ],
