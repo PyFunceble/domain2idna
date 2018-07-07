@@ -2,7 +2,7 @@
 
 ## The tool to convert domains to the famous IDNA format.
 
-[![Build Status](https://travis-ci.com/funilrys/domain2idna.svg?branch=dev)](https://travis-ci.com/funilrys/domain2idna) [![Coverage Status](https://coveralls.io/repos/github/funilrys/domain2idna/badge.svg?branch=dev)](https://coveralls.io/github/funilrys/domain2idna?branch=dev) [![license](https://img.shields.io/github/license/funilrys/domain2idna.svg)](https://github.com/funilrys/domain2idna/blob/dev/LICENSE) [![GitHub release](https://img.shields.io/github/release/funilrys/domain2idna.svg)](https://github.com/funilrys/domain2idna/releases/latest) [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
+[![Build Status](https://travis-ci.com/funilrys/domain2idna.svg?branch=master)](https://travis-ci.com/funilrys/domain2idna) [![Coverage Status](https://coveralls.io/repos/github/funilrys/domain2idna/badge.svg?branch=master)](https://coveralls.io/github/funilrys/domain2idna?branch=master) [![license](https://img.shields.io/github/license/funilrys/domain2idna.svg)](https://github.com/funilrys/domain2idna/blob/master/LICENSE) [![GitHub release](https://img.shields.io/github/release/funilrys/domain2idna.svg)](https://github.com/funilrys/domain2idna/releases/latest) [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 
 The objective of this project is to provide a tool for list or hosts file maintainer that can convertible domain to the Punycode/IDNA format.
 
