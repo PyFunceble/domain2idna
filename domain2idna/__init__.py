@@ -12,10 +12,15 @@ Author:
 Contributors:
     Let's contribute to domains2idna!!
 
-Repository:
+Project link:
     https://github.com/funilrys/domain2idna
 
+Project documentation:
+    http://domain2idna.readthedocs.ios
+
 License:
+::
+
     MIT License
 
     Copyright (c) 2018 Nissar Chababy
@@ -39,12 +44,38 @@ License:
     SOFTWARE.
 """
 
+# pylint: disable=bad-continuation
+
 import argparse
 from colorama import Fore, Style
 from colorama import init as initiate
 
 from .core import Core
 from .helpers import File
+
+VERSION = "1.4.1"
+
+
+def get(domain_to_convert):
+    """
+    This function is a passerelle between the front
+    and the backend of this module.
+
+    Argument:
+        domain_to_convert: str
+            The domain to convert.
+
+    Returns:
+        str:
+            if a string is given.
+        list:
+            if a list is given.
+    """
+
+    if domain_to_convert:
+        return Core(domain_to_convert).to_idna()
+
+    return domain_to_convert
 
 
 def domain(domain_to_convert, output=None):
@@ -53,16 +84,22 @@ def domain(domain_to_convert, output=None):
 
     Arguments:
         - domain_to_convert: str
-            The domain to convert
+            The domain to convert.
         - output: str
             The output of the conversion. If not set, we output to stdout.
+
+    Returns: stdout
+        Print the result on screen.
+
+    Raises: Exception
+        If the given domain_to_convert is empty.
     """
 
-    if domain_to_convert:
+    if domain_to_convert and domain_to_convert.strip():
         converted = Core(domain_to_convert).to_idna()
 
         if output:
-            File(output).write(converted, overwrite=True)
+            File(output).write(converted)
         else:
             print(converted)
     else:
@@ -78,6 +115,9 @@ def file(file_to_convert, output=None):
             The file to convert
         - output: str
             The output of the conversion. If not set, we output to stdout.
+
+    Returns: stdout
+        print the result on screen.
     """
 
     if file_to_convert:
@@ -85,18 +125,18 @@ def file(file_to_convert, output=None):
 
         try:
             to_convert = File(file_to_convert).read().split("\n")
-        except (UnicodeEncodeError, UnicodeDecodeError):
+        except (UnicodeEncodeError, UnicodeDecodeError):  # pragma: no cover
             to_convert = File(file_to_convert).read("ISO-8859-1").split("\n")
 
         converted = Core(to_convert).to_idna()
 
         if output:
-            File(output).write("\n".join(converted), overwrite=True)
+            File(output).write("\n".join(converted))
         else:
             print("\n".join(converted))
 
 
-def command():
+def command():  # pragma: no cover
     """
     This function is the main entry of the command line script.
     """
@@ -121,13 +161,22 @@ def command():
             "-d", "--domain", type=str, help="Set the domain to convert."
         )
 
-        parser.add_argument("-f", "--file", type=str, help="Set the domain to convert.")
+        parser.add_argument(
+            "-f",
+            "--file",
+            type=str,
+            help="Set the file to read to get the domain(s) to convert.",
+        )
 
         parser.add_argument(
             "-o",
             "--output",
             type=str,
             help="Set the file where we write the converted domain(s).",
+        )
+
+        parser.add_argument(
+            "-v", "--version", action="version", version="%(prog)s " + VERSION
         )
 
         args = parser.parse_args()

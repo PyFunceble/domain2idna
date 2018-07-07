@@ -1,6 +1,6 @@
 """
-domain2idna - Python module/library to convert a domain or a file with a list
-of domain to the famous IDNA format.
+domain2idna - A tool to convert a domain or a file with a list of domain to
+the famous IDNA format.
 
 Author:
     Nissar Chababy, @funilrys, contactTATAfunilrysTODTODcom
@@ -34,7 +34,13 @@ License:
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
 """
+from re import compile as comp
 from unittest import TestLoader
+
+try:
+    from pypandoc import convert
+except (IOError, ImportError): # pragma: no cover
+    pass
 
 from setuptools import setup
 
@@ -60,12 +66,38 @@ def _get_requirements():
     return requirements
 
 
+def _get_version():
+    """
+    This function will extract the version from domain2idna/__init__.py
+    """
+
+    to_match = comp(r'VERSION\s=\s"(.*)"\n')
+    extracted = to_match.findall(
+        open("domain2idna/__init__.py", encoding="utf-8").read()
+    )[
+        0
+    ]
+
+    return ".".join(list(filter(lambda x: x.isdigit(), extracted.split("."))))
+
+
+def _get_long_description():
+    """
+    This function return the long description.
+    """
+
+    try:
+        return convert("README.md", "rst")
+    except NameError: # pragma: no cover
+        return open("README.md", encoding="utf-8").read() # pragma: no cover
+
+
 setup(
     name="domain2idna",
-    version="1.1.0",
-    description="Python module/library to convert a domain or a file with a list \
-     of domain to the famous IDNA format.",
-    long_description=open("README").read(),
+    version=_get_version(),
+    description="A tool to convert a domain or a file with a list of domain to the "
+    "famous IDNA format.",
+    long_description=_get_long_description(),
     install_requires=_get_requirements(),
     author="funilrys",
     author_email="contact@funilrys.com",
@@ -80,7 +112,6 @@ setup(
         "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",
         "Programming Language :: Python",
-        "Programming Language :: Python :: 2",
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
     ],

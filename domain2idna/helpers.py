@@ -12,8 +12,11 @@ Author:
 Contributors:
     Let's contribute to domains2idna!!
 
-Repository:
+Project link:
     https://github.com/funilrys/domain2idna
+
+Project documentation:
+    http://domain2idna.readthedocs.ios
 
 License:
     MIT License
@@ -39,7 +42,7 @@ License:
     SOFTWARE.
 """
 
-from os import path, remove
+from os import remove
 
 
 class File(object):
@@ -47,37 +50,33 @@ class File(object):
     File treatment/manipulations.
 
     Argument:
-        file: str
+        filename: str
             A path to the file to manipulate.
     """
 
-    def __init__(self, file, auto_encoding=False):
-        self.file = file
-        self.auto_encoding = auto_encoding
+    def __init__(self, filename):
+        self.file = filename
 
-    def write(self, data_to_write, overwrite=False):
+    def write(self, data_to_write):
         """
         Write or append data into the given file path.
-
-        Argument:
-            - data_to_write: str
-                The data to write.
         """
 
         if data_to_write and isinstance(data_to_write, str):
-            if overwrite or not path.isfile(self.file):
-                with open(self.file, "w", encoding="utf-8") as file:
-                    file.write(data_to_write)
-            else:
-                with open(self.file, "a", encoding="utf-8") as file:
-                    file.write(data_to_write)
+            with open(self.file, "w", encoding="utf-8") as file:
+                file.write(data_to_write)
 
     def read(self, encoding=None):
         """
         Read a given file path and return its content.
 
-        Returns: str
-            The content of the given file path.
+        Argument:
+            encoding: str
+                The encoding to use when opening the file.
+
+        Returns:
+            str
+                The content of the given file path.
         """
 
         if not encoding:
@@ -91,6 +90,9 @@ class File(object):
     def delete(self):
         """
         Delete a given file path.
+
+        Note:
+            We handle the case that the file does not exist by doing and raising nothing.
         """
 
         try:

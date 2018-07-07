@@ -12,8 +12,11 @@ Author:
 Contributors:
     Let's contribute to domains2idna!!
 
-Repository:
+Project link:
     https://github.com/funilrys/domain2idna
+
+Project documentation:
+    http://domain2idna.readthedocs.ios
 
 License:
     MIT License
@@ -39,10 +42,11 @@ License:
     SOFTWARE.
 """
 
+from os import path
 from unittest import TestCase
 from unittest import main as launch_tests
 
-from domain2idna.helpers import File, path
+from domain2idna.helpers import File
 
 
 class TestFile(TestCase):
@@ -83,7 +87,7 @@ class TestFile(TestCase):
         self.assertEqual(expected, actual)
 
         expected = "Hello, World! Python is great, you should consider learning it!"
-        File("hi").write(expected, overwrite=True)
+        File("hi").write(expected)
 
         with open("hi") as file:
             actual = file.read()
@@ -110,6 +114,26 @@ class TestFile(TestCase):
         expected = False
         File("hi").delete()
         actual = path.isfile("hi")
+
+        self.assertEqual(expected, actual)
+
+    def test_delete_not_exist(self):
+        """
+        This method test helpers.File.delete for the case that the file does
+        not exists.
+        """
+
+        filename = "this_file_is_a_ghost"
+
+        expected = False
+        actual = path.isfile(filename)
+
+        self.assertEqual(expected, actual)
+
+        File(filename).delete()
+
+        expected = False
+        actual = path.isfile(filename)
 
         self.assertEqual(expected, actual)
 
