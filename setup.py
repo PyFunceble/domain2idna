@@ -82,11 +82,7 @@ def _get_long_description():
     This function return the long description.
     """
 
-    try:
-        return convert("README.md", "rst")
-
-    except (IOError, ImportError):
-        return open("README.md", encoding="utf-8").read()
+    return convert("README.md", "rst")
 
 
 setup(
