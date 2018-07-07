@@ -37,7 +37,11 @@ License:
 from re import compile as comp
 from unittest import TestLoader
 
-from pypandoc import convert
+try:
+    from pypandoc import convert
+except (IOError, ImportError): # pragma: no cover
+    pass
+
 from setuptools import setup
 
 
@@ -82,7 +86,10 @@ def _get_long_description():
     This function return the long description.
     """
 
-    return convert("README.md", "rst")
+    try:
+        return convert("README.md", "rst")
+    except NameError: # pragma: no cover
+        return open("README.md", encoding="utf-8").read() # pragma: no cover
 
 
 setup(
