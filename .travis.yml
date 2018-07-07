@@ -15,6 +15,10 @@ os:
 matrix:
   fast_finish:  true
 
+addons:
+  apt_packages:
+    - pandoc
+
 install:
   - pip3 install --upgrade pip
   - pip3 install pylint coverage coveralls
