@@ -1,6 +1,6 @@
 """
-domain2idna - Python module/library to convert a domain or a file with a list
-of domain to the famous IDNA format.
+domain2idna - A tool to convert a domain or a file with a list of domain to
+the famous IDNA format.
 
 Author:
     Nissar Chababy, @funilrys, contactTATAfunilrysTODTODcom
@@ -79,8 +79,8 @@ def _get_version():
 setup(
     name="domain2idna",
     version=_get_version(),
-    description="Python module/library to convert a domain or a file with a list \
-     of domain to the famous IDNA format.",
+    description="A tool to convert a domain or a file with a list of domain to the"
+    "famous IDNA format.",
     long_description=open("README").read(),
     install_requires=_get_requirements(),
     author="funilrys",
