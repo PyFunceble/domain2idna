@@ -41,6 +41,7 @@ License:
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
 """
+# pylint: disable=bad-continuation
 
 
 class Core(object):  # pylint: disable=too-few-public-methods
@@ -100,7 +101,9 @@ class Core(object):  # pylint: disable=too-few-public-methods
             result = []
 
             for domain in self.domains:
-                if domain and domain.strip() and not domain.startswith("#"):
+                if domain and domain not in self.to_ignore and domain.strip() and not domain.startswith(  # pylint: disable=line-too-long
+                    "#"
+                ):
                     splited_domain = domain.split()
                     local_result = []
 
@@ -118,6 +121,11 @@ class Core(object):  # pylint: disable=too-few-public-methods
                     result.append(domain)
 
             return result
+
+        domains = self.domains.strip().split()
+
+        if len(domains) > 1:
+            return " ".join(Core(domains).to_idna())
 
         try:
             return self._convert_it_to_idna(self.domains)

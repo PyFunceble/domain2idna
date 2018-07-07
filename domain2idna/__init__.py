@@ -53,7 +53,7 @@ from colorama import init as initiate
 from .core import Core
 from .helpers import File
 
-VERSION = "1.5.0"
+VERSION = "1.5.1"
 
 
 def get(domain_to_convert):

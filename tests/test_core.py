@@ -116,6 +116,39 @@ class TestCore(TestCase):
 
         self.assertEqual(expected, actual)
 
+    def test_hosts_file_format(self):
+        """
+        This method test that the hosts file format is always respected.
+        """
+
+        given = [
+            "0.0.0.0 bịllogram.com",
+            "127.0.0.1 bittréẋ.com",
+            "0.0.0.0 cryptopiạ.com",
+            "127.0.0.1 coinbȧse.com",
+            "0.0.0.0 cṙyptopia.com",
+        ]
+
+        expected = [
+            "0.0.0.0 xn--bllogram-g80d.com",
+            "127.0.0.1 xn--bittr-fsa6124c.com",
+            "0.0.0.0 xn--cryptopi-ux0d.com",
+            "127.0.0.1 xn--coinbse-30c.com",
+            "0.0.0.0 xn--cyptopia-4e0d.com",
+        ]
+
+        actual = Core(given).to_idna()
+
+        self.assertEqual(expected, actual)
+
+        given = "0.0.0.0 bịllogram.com"
+
+        expected = "0.0.0.0 xn--bllogram-g80d.com"
+
+        actual = Core(given).to_idna()
+
+        self.assertEqual(expected, actual)
+
 
 if __name__ == "__main__":
     launch_tests()
