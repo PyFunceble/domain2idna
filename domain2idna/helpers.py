@@ -45,7 +45,7 @@ License:
 from os import remove
 
 
-class File(object):
+class File:
     """
     File treatment/manipulations.
 

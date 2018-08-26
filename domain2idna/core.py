@@ -44,7 +44,7 @@ License:
 # pylint: disable=bad-continuation
 
 
-class Core(object):  # pylint: disable=too-few-public-methods
+class Core:  # pylint: disable=too-few-public-methods
     """
     Brain of the program
 
@@ -101,8 +101,11 @@ class Core(object):  # pylint: disable=too-few-public-methods
             result = []
 
             for domain in self.domains:
-                if domain and domain not in self.to_ignore and domain.strip() and not domain.startswith(  # pylint: disable=line-too-long
-                    "#"
+                if (
+                    domain
+                    and domain not in self.to_ignore
+                    and domain.strip()
+                    and not domain.startswith("#")  # pylint: disable=line-too-long
                 ):
                     splited_domain = domain.split()
                     local_result = []
