@@ -37,11 +37,6 @@ License:
 from re import compile as comp
 from unittest import TestLoader
 
-try:
-    from pypandoc import convert
-except (IOError, ImportError): # pragma: no cover
-    pass
-
 from setuptools import setup
 
 
@@ -74,9 +69,7 @@ def _get_version():
     to_match = comp(r'VERSION\s=\s"(.*)"\n')
     extracted = to_match.findall(
         open("domain2idna/__init__.py", encoding="utf-8").read()
-    )[
-        0
-    ]
+    )[0]
 
     return ".".join(list(filter(lambda x: x.isdigit(), extracted.split("."))))
 
@@ -86,10 +79,7 @@ def _get_long_description():
     This function return the long description.
     """
 
-    try:
-        return convert("README.md", "rst")
-    except NameError: # pragma: no cover
-        return open("README.md", encoding="utf-8").read() # pragma: no cover
+    return open("README.rst", encoding="utf-8").read()  # pragma: no cover
 
 
 setup(
