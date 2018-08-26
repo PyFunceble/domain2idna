@@ -1,3 +1,21 @@
+Requirements
+============
+
+Here is the list of requirements:
+
+-   Python 3.x
+-   :code:`colorama`
+
+Python 3.x
+----------
+
+As we want to give a priority to Python 3, Python 3 is required.
+
+colorama
+--------
+
+As we want to add some coloration, we choose :code:`colorama` for the job as it offers a portable awesome solution.
+
 Get and install domain2idna
 ===========================
 
@@ -7,7 +25,7 @@ Using :code:`pip`
 Choose your repository, install and enjoy domain2idna!
 
 From PyPi
-""""""""""
+^^^^^^^^^
 
 ::
 
@@ -21,7 +39,7 @@ From PyPi
 .. _pip documentation: https://pip.pypa.io/en/stable/reference/pip_install/?highlight=--user#cmdoption-user
 
 From GitHub
-"""""""""""
+^^^^^^^^^^^
 
 ::
 
@@ -69,3 +87,13 @@ We install domain2idna.
 
 .. warning::
    We do not recommend the :code:`--user` flag when using :code:`domain2idna` into containers like - for example - Travis CI.
+
+First steps
+===========
+
+
+Make sure that you can run the following without any issue and enjoy domain2idna!!
+
+::
+
+   $ domain2idna --version
