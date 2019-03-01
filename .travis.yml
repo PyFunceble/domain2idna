@@ -32,7 +32,7 @@ install:
   - source activate test-environment
   - python -VV
   - pip --version
-  - pip3 install pylint coverage coveralls
+  - pip install pylint coverage coveralls
 
 script:
   - coverage run setup.py test && python3 setup.py install
