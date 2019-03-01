@@ -47,6 +47,7 @@ License:
 # pylint: disable=bad-continuation
 
 import argparse
+
 from colorama import Fore, Style
 from colorama import init as initiate
 
