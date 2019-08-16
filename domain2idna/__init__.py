@@ -16,7 +16,7 @@ Project link:
     https://github.com/funilrys/domain2idna
 
 Project documentation:
-    http://domain2idna.readthedocs.ios
+    http://domain2idna.readthedocs.io
 
 License:
 ::
@@ -54,7 +54,7 @@ from colorama import init as initiate
 from .core import Core
 from .helpers import File
 
-VERSION = "1.7.0"
+VERSION = "1.7.1"
 
 
 def get(domain_to_convert):
