@@ -85,6 +85,7 @@ def _get_long_description():
 setup(
     name="domain2idna",
     version=_get_version(),
+    python_requires=">=3.6.2, <4",
     description="A tool to convert a domain or a file with a list of domain to the "
     "famous IDNA format.",
     long_description=_get_long_description(),

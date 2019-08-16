@@ -3,13 +3,14 @@ Requirements
 
 Here is the list of requirements:
 
--   Python 3.x
+-   Python >= 3.6.2  && Python < 4
 -   :code:`colorama`
 
-Python 3.x
-----------
+Python >= 3.6.2  && Python < 4
+------------------------------
 
-As we want to give a priority to Python 3, Python 3 is required.
+As we want to give a priority to Python 3, Python 3 is required. The specification `>= 3.6.2` is because
+this project is tested which all version `>=3.6.2`
 
 colorama
 --------
@@ -35,8 +36,6 @@ From PyPi
    We recommend the :code:`--user` flag which installs the required dependencies at the user level. More information about it can be found on `pip documentation`_.
 .. warning::
    We do not recommend the :code:`--user` flag when using :code:`domain2idna` into containers like - for example - Travis CI.
-
-.. _pip documentation: https://pip.pypa.io/en/stable/reference/pip_install/?highlight=--user#cmdoption-user
 
 From GitHub
 ^^^^^^^^^^^

@@ -1,5 +1,8 @@
+Usage
+=====
+
 As a Python module
-==================
+------------------
 
 Here's an example which show us how domain2idna can be used a python module.
 
@@ -34,7 +37,7 @@ Here's an example which show us how domain2idna can be used a python module.
     print( "Converted domain: %s" % domain2idna(DOMAINS[0]))
 
 From a terminal
-===============
+---------------
 
 Here is the list of available command when calling :code:`domain2idna` from a terminal.
 
