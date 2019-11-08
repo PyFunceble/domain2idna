@@ -42,7 +42,7 @@ From GitHub
 
 ::
 
-   $ pip3 install --user git+https://github.com/funilrys/domain2idna.git@master#egg=domain2idna
+   $ pip3 install --user git+https://github.com/PyFunceble/domain2idna.git@master#egg=domain2idna
 
 .. note::
    We recommend the :code:`--user` flag which installs the required dependencies at the user level. More information about it can be found on `pip documentation`_.
@@ -60,7 +60,7 @@ Execute the following and enjoy domain2idna!
 We clone the repository.
 ::
 
-   $ git clone https://github.com/funilrys/domain2idna.git
+   $ git clone https://github.com/PyFunceble/domain2idna.git
 
 
 We move to the cloned directory.

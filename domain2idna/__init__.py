@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-domain2idna - A tool to convert a domain or a file with a list
+domain2idna - The tool to convert a domain or a file with a list
 of domain to the famous IDNA format.
 
 This submodule is the main entry of the module/library.
@@ -13,7 +13,7 @@ Contributors:
     Let's contribute to domains2idna!!
 
 Project link:
-    https://github.com/funilrys/domain2idna
+    https://github.com/PyFunceble/domain2idna
 
 Project documentation:
     http://domain2idna.readthedocs.io
@@ -24,6 +24,7 @@ License:
     MIT License
 
     Copyright (c) 2018-2019 Nissar Chababy
+    Copyright (c) 2019 PyFunceble
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -54,7 +55,7 @@ from colorama import init as initiate
 from .core import Core
 from .helpers import File
 
-VERSION = "1.8.0"
+VERSION = "1.9.0"
 
 
 def get(domain_to_convert):
@@ -62,15 +63,16 @@ def get(domain_to_convert):
     This function is a passerelle between the front
     and the backend of this module.
 
-    Argument:
-        domain_to_convert: str
-            The domain to convert.
 
-    Returns:
+    :param str domain_to_convert:
+        The domain to convert.
+
+    :return:
         str:
             if a string is given.
         list:
             if a list is given.
+    :rtype: str, list
     """
 
     if domain_to_convert:
@@ -83,17 +85,14 @@ def domain(domain_to_convert, output=None):
     """
     This function convert the given domain to IDNA format.
 
-    Arguments:
-        - domain_to_convert: str
-            The domain to convert.
-        - output: str
-            The output of the conversion. If not set, we output to stdout.
 
-    Returns: stdout
-        Print the result on screen.
+    :param str domain_to_convert:
+        The domain to convert.
+    :param str output:
+        The output of the conversion. If not set, we output to stdout.
 
-    Raises: Exception
-        If the given domain_to_convert is empty.
+    :raise ValueError:
+        If the given :code:`domain_to_convert` is empty.
     """
 
     if domain_to_convert and domain_to_convert.strip():
@@ -104,21 +103,17 @@ def domain(domain_to_convert, output=None):
         else:
             print(converted)
     else:
-        raise Exception("Please give us a domain.")
+        raise ValueError("<domain_to_convert> is not understable.")
 
 
 def file(file_to_convert, output=None):
     """
     This function read a file and convert each line of the file to IDNA.
 
-    Arguments:
-        - file_to_convert: str
-            The file to convert
-        - output: str
-            The output of the conversion. If not set, we output to stdout.
-
-    Returns: stdout
-        print the result on screen.
+    :param str file_to_convert:
+        The file to convert
+    :param str output:
+        The output of the conversion. If not set, we output to stdout.
     """
 
     if file_to_convert:
@@ -135,54 +130,3 @@ def file(file_to_convert, output=None):
             File(output).write("\n".join(converted))
         else:
             print("\n".join(converted))
-
-
-def command():  # pragma: no cover
-    """
-    This function is the main entry of the command line script.
-    """
-
-    if __name__ == "domain2idna":
-        initiate(True)
-
-        parser = argparse.ArgumentParser(
-            description="domain2idna - A tool to convert a domain or a file with \
-            a list of domain to the famous IDNA format.",
-            epilog="Crafted with %s by %s"
-            % (
-                Fore.RED + "♥" + Fore.RESET,
-                Style.BRIGHT
-                + Fore.CYAN
-                + "Nissar Chababy (Funilrys)"
-                + Style.RESET_ALL,
-            ),
-        )
-
-        parser.add_argument(
-            "-d", "--domain", type=str, help="Set the domain to convert."
-        )
-
-        parser.add_argument(
-            "-f",
-            "--file",
-            type=str,
-            help="Set the file to read to get the domain(s) to convert.",
-        )
-
-        parser.add_argument(
-            "-o",
-            "--output",
-            type=str,
-            help="Set the file where we write the converted domain(s).",
-        )
-
-        parser.add_argument(
-            "-v", "--version", action="version", version="%(prog)s " + VERSION
-        )
-
-        args = parser.parse_args()
-
-        if args.domain:
-            domain(args.domain, args.output)
-        elif args.file:
-            file(args.file, args.output)

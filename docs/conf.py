@@ -15,42 +15,19 @@
 import os
 import sys
 
-sys.path.insert(0, os.path.abspath("../"))
+sys.path.insert(0, os.path.abspath(".."))
 
-from re import compile as comp
-
-
-def _get_version(full=False):
-    """
-    This function will extract the version from domain2idna/__init__.py
-
-    Argument:
-        - full: bool
-            True: Return the full version name
-            False: Return the short version
-    """
-
-    to_match = comp(r'VERSION\s=\s"(.*)"\n')
-    extracted = to_match.findall(
-        open("../domain2idna/__init__.py", encoding="utf-8").read()
-    )[0]
-
-    if not full:
-        return ".".join([x for x in extracted.split(".") if x.isdigit()])
-    else:
-        return extracted
+from setup import get_version
 
 
 # -- Project information -----------------------------------------------------
 
 project = "domain2idna"
-copyright = "2018, Nissar Chababy (@funilrys)"
+copyright = "2018, 2019, Nissar Chababy (@funilrys) | 2019, PyFunceble"
 author = "Nissar Chababy (@funilrys)"
 
 # The short X.Y version
-version = _get_version()
-# The full version, including alpha/beta/rc tags
-release = _get_version(True)
+version = get_version()
 
 
 # -- General configuration ---------------------------------------------------

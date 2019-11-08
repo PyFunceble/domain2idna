@@ -20,7 +20,7 @@ Here's an example which show us how domain2idna can be used a python module.
         Let's contribute to this example!!
 
     Repository:
-        https://github.com/funilrys/domain2idna
+        https://github.com/PyFunceble/domain2idna
     """
     from domain2idna import get as domain2idna
 
@@ -45,7 +45,7 @@ Here is the list of available command when calling :code:`domain2idna` from a te
 
     usage: domain2idna [-h] [-d DOMAIN] [-f FILE] [-o OUTPUT] [-v]
 
-    domain2idna - A tool to convert a domain or a file with a list of domain to
+    domain2idna - The tool to convert a domain or a file with a list of domain to
     the famous IDNA format.
 
     optional arguments:

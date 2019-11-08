@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-domain2idna - A tool to convert a domain or a file with a list
+domain2idna - The tool to convert a domain or a file with a list
 of domain to the famous IDNA format.
 
 This submodule will test domain2idna.helpers
@@ -13,7 +13,7 @@ Contributors:
     Let's contribute to domains2idna!!
 
 Project link:
-    https://github.com/funilrys/domain2idna
+    https://github.com/PyFunceble/domain2idna
 
 Project documentation:
     http://domain2idna.readthedocs.io
@@ -22,6 +22,7 @@ License:
     MIT License
 
     Copyright (c) 2018-2019 Nissar Chababy
+    Copyright (c) 2019 PyFunceble
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -51,12 +52,12 @@ from domain2idna.helpers import File
 
 class TestFile(TestCase):
     """
-    This class will test helpers.File.
+    Tests helpers.File.
     """
 
     def test_write_delete(self):
         """
-        This method test helpers.File.write along with helpers.File.delete.
+        Tests helpers.File.write along with helpers.File.delete.
         """
 
         expected = "Hello, World! I'm PyFunceble"
@@ -75,7 +76,7 @@ class TestFile(TestCase):
 
     def test_write_overwrite_delete(self):
         """
-        This metthod test helpers.File.write along with helpers.File.delete.
+        Tests helpers.File.write along with helpers.File.delete.
         """
 
         expected = "Hello, World! I'm PyFunceble"
@@ -102,7 +103,7 @@ class TestFile(TestCase):
 
     def test_read_delete(self):
         """
-        This method test helpers.File.read along with helpers.File.delete.
+        Tests helpers.File.read along with helpers.File.delete.
         """
 
         expected = "Hello, World! This has been written by Fun Ilrys."
@@ -119,7 +120,7 @@ class TestFile(TestCase):
 
     def test_delete_not_exist(self):
         """
-        This method test helpers.File.delete for the case that the file does
+        Tests helpers.File.delete for the case that the file does
         not exists.
         """
 

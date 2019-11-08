@@ -1,5 +1,5 @@
 """
-domain2idna - A tool to convert a domain or a file with a list of domain to
+domain2idna - The tool to convert a domain or a file with a list of domain to
 the famous IDNA format.
 
 Author:
@@ -9,12 +9,13 @@ Contributors:
     Let's contribute to domains2idna!!
 
 Repository:
-    https://github.com/funilrys/domain2idna
+    https://github.com/PyFunceble/domain2idna
 
 License:
     MIT License
 
     Copyright (c) 2018-2019 Nissar Chababy
+    Copyright (c) 2019 PyFunceble
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -40,72 +41,86 @@ from unittest import TestLoader
 from setuptools import setup
 
 
-def _test_suite():
+def test_suite():
     """
     This method will discover and run all the test
     """
 
     test_loader = TestLoader()
-    test_suite = test_loader.discover("tests", pattern="test_*.py")
-    return test_suite
+    tests = test_loader.discover("tests", pattern="test_*.py")
+    return tests
 
 
-def _get_requirements():
+def get_requirements():
     """
     This function extract all requirements from requirements.txt.
     """
 
-    with open("requirements.txt") as file:
-        requirements = file.read().splitlines()
+    try:
+        with open("requirements.txt") as file:
+            requirements = file.read().splitlines()
+    except FileNotFoundError:
+        with open("../requirements.txt") as file:
+            requirements = file.read().splitlines()
 
     return requirements
 
 
-def _get_version():
+def get_version():
     """
     This function will extract the version from domain2idna/__init__.py
     """
 
     to_match = comp(r'VERSION\s=\s"(.*)"\n')
-    extracted = to_match.findall(
-        open("domain2idna/__init__.py", encoding="utf-8").read()
-    )[0]
+
+    try:
+        extracted = to_match.findall(
+            open("domain2idna/__init__.py", encoding="utf-8").read()
+        )[0]
+    except FileNotFoundError:
+        extracted = to_match.findall(
+            open("../domain2idna/__init__.py", encoding="utf-8").read()
+        )[0]
 
     return ".".join([x for x in extracted.split(".") if x.isdigit()])
 
 
-def _get_long_description():
+def get_long_description():
     """
     This function return the long description.
     """
 
-    return open("README.rst", encoding="utf-8").read()  # pragma: no cover
+    try:
+        return open("README.rst", encoding="utf-8").read()
+    except FileNotFoundError:
+        return open("../README.rst", encoding="utf-8").read()
 
 
-setup(
-    name="domain2idna",
-    version=_get_version(),
-    python_requires=">=3.6.2, <4",
-    description="A tool to convert a domain or a file with a list of domain to the "
-    "famous IDNA format.",
-    long_description=_get_long_description(),
-    install_requires=_get_requirements(),
-    author="funilrys",
-    author_email="contact@funilrys.com",
-    license="MIT https://raw.githubusercontent.com/funilrys/domain2idna/master/LICENSE",
-    url="https://github.com/funilrys/domain2idna",
-    platforms=["any"],
-    packages=["domain2idna"],
-    keywords=["Python", "domain", "idna"],
-    classifiers=[
-        "Environment :: Console",
-        "Topic :: Internet",
-        "Development Status :: 5 - Production/Stable",
-        "Intended Audience :: Developers",
-        "Programming Language :: Python",
-        "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: MIT License",
-    ],
-    test_suite="setup._test_suite",
-    entry_points={"console_scripts": ["domain2idna=domain2idna:command"]},
-)
+if __name__ == "__main__":
+    setup(
+        name="domain2idna",
+        version=get_version(),
+        python_requires=">=3.6.2, <4",
+        description="The tool to convert a domain or a file with a list of domain to the "
+        "famous IDNA format.",
+        long_description=get_long_description(),
+        install_requires=get_requirements(),
+        author="funilrys",
+        author_email="contact@funilrys.com",
+        license="MIT https://raw.githubusercontent.com/PyFunceble/domain2idna/master/LICENSE",
+        url="https://github.com/PyFunceble/domain2idna",
+        platforms=["any"],
+        packages=["domain2idna"],
+        keywords=["Python", "domain", "idna"],
+        classifiers=[
+            "Environment :: Console",
+            "Topic :: Internet",
+            "Development Status :: 5 - Production/Stable",
+            "Intended Audience :: Developers",
+            "Programming Language :: Python",
+            "Programming Language :: Python :: 3",
+            "License :: OSI Approved :: MIT License",
+        ],
+        test_suite="setup.test_suite",
+        entry_points={"console_scripts": ["domain2idna=domain2idna.cli:tool"]},
+    )

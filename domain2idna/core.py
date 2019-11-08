@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """
-domain2idna - A tool to convert a domain or a file with a list
+domain2idna - The tool to convert a domain or a file with a list
 of domain to the famous IDNA format.
 
 This module is the core of the module/library. It contains the brain of the program.
@@ -13,7 +13,7 @@ Contributors:
     Let's contribute to domains2idna!!
 
 Project link:
-    https://github.com/funilrys/domain2idna
+    https://github.com/PyFunceble/domain2idna
 
 Project documentation:
     http://domain2idna.readthedocs.io
@@ -22,6 +22,7 @@ License:
     MIT License
 
     Copyright (c) 2018-2019 Nissar Chababy
+    Copyright (c) 2019 PyFunceble
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -48,9 +49,9 @@ class Core:  # pylint: disable=too-few-public-methods
     """
     Brain of the program
 
-    Argument:
-        domains: str or list
-            The domain or domains to convert.
+    :param domains:
+        The domain or domains to convert.
+    :type domains: str, list
     """
 
     def __init__(self, domains):
@@ -73,28 +74,26 @@ class Core:  # pylint: disable=too-few-public-methods
     @classmethod
     def _convert_it_to_idna(cls, string):
         """
-        This method convert the given string to IDNA.
+        Converts the given string to IDNA.
 
-        Argument:
-            string: str
-                The string to convert.
+        :param str string:
+            The string to convert.
 
-        Returns:
-            str
-                The converted string.
+        :rtype: str
         """
 
         return string.encode("idna").decode("utf-8")
 
     def to_idna(self):
         """
-        This method convert a domain from the given list.
+        Converts a domain from the given list.
 
-        Returns:
+        :return:
             str:
                 if a single domain is given.
             list:
                 If a list of domain is given.
+        :rtype: str, list
         """
 
         if isinstance(self.domains, list):  # pylint: disable=too-many-nested-blocks

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-domain2idna - A tool to convert a domain or a file with a list
+domain2idna - The tool to convert a domain or a file with a list
 of domain to the famous IDNA format.
 
 This submodule will test domain2idna.__init__
@@ -13,7 +13,7 @@ Contributors:
     Let's contribute to domains2idna!!
 
 Project link:
-    https://github.com/funilrys/domain2idna
+    https://github.com/PyFunceble/domain2idna
 
 Project documentation:
     http://domain2idna.readthedocs.io
@@ -22,6 +22,7 @@ License:
     MIT License
 
     Copyright (c) 2018-2019 Nissar Chababy
+    Copyright (c) 2019 PyFunceble
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -149,9 +150,8 @@ class TestInit(BaseStdout):
         """
 
         for empty_domain in self.empty_inputs:
-            self.assertRaisesRegex(
-                Exception,
-                r"Please\sgive\sus\sa\sdomain\.",
+            self.assertRaises(
+                ValueError,
                 lambda: domain(empty_domain),  # pylint: disable=cell-var-from-loop
             )
 

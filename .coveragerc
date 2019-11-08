@@ -9,6 +9,8 @@ omit =
     *.eggs/*
     */distutils/*
 
+    setup.py
+
 [report]
 # This should be False one we move into production
 skip_covered = True

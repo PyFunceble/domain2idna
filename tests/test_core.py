@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-domain2idna - A tool to convert a domain or a file with a list
+domain2idna - The tool to convert a domain or a file with a list
 of domain to the famous IDNA format.
 
 This submodule will test domain2idna.core
@@ -13,7 +13,7 @@ Contributors:
     Let's contribute to domains2idna!!
 
 Project link:
-    https://github.com/funilrys/domain2idna
+    https://github.com/PyFunceble/domain2idna
 
 Project documentation:
     http://domain2idna.readthedocs.io
@@ -22,6 +22,7 @@ License:
     MIT License
 
     Copyright (c) 2018-2019 Nissar Chababy
+    Copyright (c) 2019 PyFunceble
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -50,12 +51,12 @@ from domain2idna.core import Core
 
 class TestCore(TestCase):
     """
-    This class test Core.to_idna.
+    Tests Core.to_idna.
     """
 
     def test_to_idna_single(self):
         """
-        This method run and test Core.idna.
+        Runs and tests Core.idna.
         """
 
         domain_to_test = "ṁỵetherwallet.com"
@@ -67,7 +68,7 @@ class TestCore(TestCase):
 
     def test_to_idna_multiple(self):
         """
-        This method run and test Core.idna.
+        Runs and tests Core.idna.
         """
 
         domains_to_test = [
@@ -93,7 +94,7 @@ class TestCore(TestCase):
 
     def test_commented_line(self):
         """
-        This method test that the comments are returned normally.
+        Tests that the comments are returned normally.
         """
 
         comments = [
@@ -118,7 +119,7 @@ class TestCore(TestCase):
 
     def test_hosts_file_format(self):
         """
-        This method test that the hosts file format is always respected.
+        Tests that the hosts file format is always respected.
         """
 
         given = [

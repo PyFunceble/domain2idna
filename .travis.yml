@@ -1,25 +1,74 @@
-env:
-  matrix:
-    - PYTHON_VERSION="3.6.2"
-    - PYTHON_VERSION="3.6.3"
-    - PYTHON_VERSION="3.6.4"
-    - PYTHON_VERSION="3.6.5"
-    - PYTHON_VERSION="3.6.6"
-    - PYTHON_VERSION="3.6.7"
-    - PYTHON_VERSION="3.6.8"
-    - PYTHON_VERSION="3.6.9"
-    - PYTHON_VERSION="3.7.0"
-    - PYTHON_VERSION="3.7.1"
-    - PYTHON_VERSION="3.7.2"
-    - PYTHON_VERSION="3.7.3"
-    - PYTHON_VERSION="3.7.4"
-
-language: generic
-sudo: false
-
-os:
-  - linux
-  - osx
+jobs:
+  include:
+    - os: linux
+      dist: bionic
+      name: "Test with Python 3.8.0 under Ubuntu 18.04 (Bionic Beaver)"
+      env:
+        - PYTHON_VERSION="3.8.0"
+        - TOXENV="py38"
+    - os: osx
+      osx_image: xcode11.2
+      name: "Test with Python 3.8.0 under macOS 10.14 (Mojave)"
+      env:
+        - PYTHON_VERSION="3.8.0"
+        - TOXENV="py38"
+    - stage: "Tests"
+      language: generic
+      os: linux
+      dist: bionic
+      name: "Test with Python 3.7.5 under Ubuntu 18.04 (Bionic Beaver)"
+      env:
+        - PYTHON_VERSION="3.7.5"
+        - TOXENV="py37"
+    - language: generic
+      os: osx
+      osx_image: xcode11.2
+      name: "Test with Python 3.7.5 under macOS 10.14 (Mojave)"
+      env:
+        - PYTHON_VERSION="3.7.5"
+        - TOXENV="py37"
+    - language: generic
+      os: linux
+      dist: bionic
+      name: "Test with Python 3.7.4 under Ubuntu 18.04 (Bionic Beaver)"
+      env:
+        - PYTHON_VERSION="3.7.4"
+        - TOXENV="py37"
+    - language: generic
+      os: osx
+      osx_image: xcode11.2
+      name: "Test with Python 3.7.4 under macOS 10.14 (Mojave)"
+      env:
+        - PYTHON_VERSION="3.7.4"
+        - TOXENV="py37"
+    - language: generic
+      os: linux
+      dist: bionic
+      name: "Test with Python 3.6.9 under Ubuntu 18.04 (Bionic Beaver)"
+      env:
+        - PYTHON_VERSION="3.6.9"
+        - TOXENV="py36"
+    - language: generic
+      os: osx
+      osx_image: xcode11.2
+      name: "Test with Python 3.6.9 under macOS 10.14 (Mojave)"
+      env:
+        - PYTHON_VERSION="3.6.9"
+        - TOXENV="py36"
+    - language: generic
+      os: linux
+      dist: bionic
+      name: "Test with Python 3.6.8 under Ubuntu 18.04 (Bionic Beaver)"
+      env:
+        - PYTHON_VERSION="3.6.8"
+        - TOXENV="py36"
+    - language: generic
+      os: osx
+      osx_image: xcode11.2
+      name: "Test with Python 3.6.8 under macOS 10.14 (Mojave)"
+      env:
+        - PYTHON_VERSION="3.6.8"
+        - TOXENV="py36"
 
 matrix:
   fast_finish: true
@@ -35,16 +84,21 @@ install:
   - source activate test-environment
   - python -VV
   - pip --version
-  - pip install pylint coverage coveralls PyYAML
+  - pip install pylint coverage coveralls PyYAML pylint coverage coveralls codacy-coverage tox-current-env
+  - pip install -e .
 
 script:
-  - coverage run setup.py test && python3 setup.py install
+  - pylint domain2idna
+  - pylint tests
+  - coverage run setup.py test
+  - coverage xml
   - domain2idna -d аррӏе.com
   - domain2idna -f .travis/list_of_domain
   - domain2idna -f .travis/list_of_domain -o list_of_domain_converted
-  - echo "Tests linting " && pylint tests/*.py && echo "domain2idna linting" && pylint domain2idna
+  - cat list_of_domain_converted
 
 after_success:
+  - python-codacy-coverage -r coverage.xml
   - coveralls
 
 notifications:

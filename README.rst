@@ -5,18 +5,20 @@ domains2idna
 The tool to convert domains to the famous IDNA format.
 ------------------------------------------------------
 
-.. image:: https://travis-ci.com/funilrys/domain2idna.svg?branch=master
-    :target: https://travis-ci.com/funilrys/domain2idna
-.. image:: https://coveralls.io/repos/github/funilrys/domain2idna/badge.svg?branch=master
-    :target: https://coveralls.io/github/funilrys/domain2idna?branch=master
-.. image:: https://img.shields.io/github/license/funilrys/domain2idna.svg
-    :target: https://github.com/funilrys/domain2idna/blob/master/LICENSE
-.. image:: https://img.shields.io/github/release/funilrys/domain2idna.svg
-    :target: https://github.com/funilrys/domain2idna/releases/latest
+.. image:: https://travis-ci.com/PyFunceble/domain2idna.svg?branch=master
+    :target: https://travis-ci.com/PyFunceble/domain2idna
+.. image:: https://coveralls.io/repos/github/PyFunceble/domain2idna/badge.svg?branch=master
+    :target: https://coveralls.io/github/PyFunceble/domain2idna?branch=master
+.. image:: https://api.codacy.com/project/badge/Grade/7fc14987068e409e9ddb70195f2485ab
+    :target: https://www.codacy.com/manual/funilrys/domain2idna?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=PyFunceble/domain2idna&amp;utm_campaign=Badge_Grade
+.. image:: https://img.shields.io/github/license/PyFunceble/domain2idna.svg
+    :target: https://github.com/PyFunceble/domain2idna/blob/master/LICENSE
+.. image:: https://img.shields.io/github/release/PyFunceble/domain2idna.svg
+    :target: https://github.com/PyFunceble/domain2idna/releases/latest
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
     :target: https://github.com/ambv/black
 
-The objective of this project is to provide a tool for list or hosts file maintainer that can convertible domain to the Punycode/IDNA format.
+This project provides a tool for list or hosts file maintainer that can converts domain to the Punycode/IDNA format.
 
 __________________________________________________________
 
@@ -53,19 +55,6 @@ What can domain2idna do ?
 
 __________________________________________________________
 
-Supporting the project
-----------------------
-
-`domain2idna`_, `PyFunceble`_, `Dead-Hosts`_, `Funceble`_ and all other analog projects are or were powered by :coffee:!
-
-This project helps you and or you like it?
-
-.. image:: https://img.shields.io/badge/Help%20me%20out-with%20a%20cup%20of%20%E2%98%95%20-blue.svg
-    :alt: Help me with a cup of coffee
-    :target: https://www.paypal.me/funilrys/
-
-__________________________________________________________
-
 License
 -------
 
@@ -73,7 +62,7 @@ License
 
     MIT License
 
-    Copyright (c) 2018-2019 Nissar Chababy
+    Copyright (c) 2018, 2019 Nissar Chababy
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -94,7 +83,7 @@ License
     SOFTWARE.
 
 
-.. _domain2idna: https://github.com/funilrys/domain2idna
+.. _domain2idna: https://github.com/PyFunceble/domain2idna
 .. _PyFunceble: https://github.com/funilrys/PyFunceble
 .. _Dead-Hosts: https://github.com/dead-hosts
 .. _Funceble: https://github.com/funilrys/funceble

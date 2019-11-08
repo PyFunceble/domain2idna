@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-domain2idna - A tool to convert a domain or a file with a list
+domain2idna - The tool to convert a domain or a file with a list
 of domain to the famous IDNA format.
 
 This submodule contains all helpers that are used by other submodules.
@@ -13,7 +13,7 @@ Contributors:
     Let's contribute to domains2idna!!
 
 Project link:
-    https://github.com/funilrys/domain2idna
+    https://github.com/PyFunceble/domain2idna
 
 Project documentation:
     http://domain2idna.readthedocs.io
@@ -22,6 +22,7 @@ License:
     MIT License
 
     Copyright (c) 2018-2019 Nissar Chababy
+    Copyright (c) 2019 PyFunceble
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -49,9 +50,8 @@ class File:
     """
     File treatment/manipulations.
 
-    Argument:
-        filename: str
-            A path to the file to manipulate.
+    :param str filename:
+        A path to the file to manipulate.
     """
 
     def __init__(self, filename):
@@ -59,7 +59,10 @@ class File:
 
     def write(self, data_to_write):
         """
-        Write or append data into the given file path.
+        Writes or appends data into the given file path.
+
+        :param str data_to_write:
+            The data to write.
         """
 
         if data_to_write and isinstance(data_to_write, str):
@@ -68,15 +71,12 @@ class File:
 
     def read(self, encoding=None):
         """
-        Read a given file path and return its content.
+        Reads a given file path and return its content.
 
-        Argument:
-            encoding: str
-                The encoding to use when opening the file.
+        :param str encoding:
+            The encoding to use when opening the file.
 
-        Returns:
-            str
-                The content of the given file path.
+        :rtype: str
         """
 
         if not encoding:
@@ -89,10 +89,11 @@ class File:
 
     def delete(self):
         """
-        Delete a given file path.
+        Deletes a given file path.
 
-        Note:
-            We handle the case that the file does not exist by doing and raising nothing.
+        .. warning::
+
+            We handle the case that the file does not exist.
         """
 
         try:
