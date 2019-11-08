@@ -47,15 +47,10 @@ License:
 
 # pylint: disable=bad-continuation
 
-import argparse
-
-from colorama import Fore, Style
-from colorama import init as initiate
-
 from .core import Core
 from .helpers import File
 
-VERSION = "1.9.0"
+VERSION = "1.9.1"
 
 
 def get(domain_to_convert):
