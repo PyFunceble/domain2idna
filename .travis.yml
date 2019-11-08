@@ -1,5 +1,6 @@
 jobs:
   include:
+    - stage: "Tests"
     - os: linux
       dist: bionic
       name: "Test with Python 3.8.0 under Ubuntu 18.04 (Bionic Beaver)"
@@ -12,7 +13,6 @@ jobs:
       env:
         - PYTHON_VERSION="3.8.0"
         - TOXENV="py38"
-    - stage: "Tests"
       language: generic
       os: linux
       dist: bionic
