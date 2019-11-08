@@ -71,6 +71,28 @@ jobs:
         - PYTHON_VERSION="3.6.8"
         - TOXENV="py37"
       language: generic
+    - stage: "Deployements"
+      os: linux
+      dist: bionic
+      name: "Deployement to PyPi"
+      env:
+        - PYTHON_VERSION="3.8.0"
+        - TOXENV="py38"
+      language: generic
+      script:
+        - echo "Hello, World!"
+      after_success:
+        - echo "Hello, World!"
+      deploy:
+        provider: pypi
+        user: funilrys
+        password:
+          secure: 3tnxkvpwsRbmHIiRxeQ2/at5SkJb17dKzkvkdNhxsY9LP8EvspH5ixYiVvnC3kxRY90oPvcgCEAKZJRwFnVJTP7kO++GF6v3cnWc9yGpCJtLvOIS20OSjm32uuYTXTBavKfb+1vU/U58dAI+K8Fg7MBj+7gQM2rn6SUbmZpMZvNrAR/dJYaSlAASiKaukAE4SBu9HP6Q9Ic8qV8glpOeKSwObHkwcKMZZFHI8JfHKKSTzVLfH4RdWTHNnTpOUcddHE4Fh68oq13iJT8QAZDK1jnUIbryZOvs7cURM7Qtu0hiDRvG8UEWZ1WfWV6UNhewvHmpxYvDr88BBKZwqBCZawlfXjKjYHqMftMuQb6+O6UuVQFSN7NLBDRuW9qhLXGgF3/bb/Y5PeZmMbkLkDip5ywGF/Li6YTs6pP1q/+rAizHh53qBNWcD9O9Zgd/fNYt2vP0vFTzBGoD4cv9WQtPQWCGFlV6Kgjz+RS7FSSJOwWM8CO5L42I5oHlCJzJ1tWVoTvBEmx7hXa02uFyVIli/+rPQJtA4FgKNXNTOU+JzTBMg7jqRgT1soR3ZXrBraPGawpnrUSi1ayZ0WlNi4b8UECvwq4Wsm+wRU10B0s8yNe4a3RTGU5lOzR3D1DyXGJLOBVJyPHvZRMaXZGZx6FdYa1jFGhbTr+rS8EIzsWwxLI=
+        distributions: sdist bdist_wheel
+        skip_existing: true
+        on:
+          all_branches: true
+          condition: "${TRAVIS_BRANCH} =~ ^master$"
 
 matrix:
   fast_finish: true
