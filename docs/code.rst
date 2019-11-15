@@ -16,7 +16,7 @@ Code documentation
 ^^^^^^^^^^^^^^^^^^
 
 .. automodule::domain2idna.helpers
-   :members: 
+   :members:
 
 
 :code:`File()`
@@ -26,14 +26,14 @@ Code documentation
     :members:
 
 
-Core
-----
+Converter
+---------
 
 Code documentation
 ^^^^^^^^^^^^^^^^^^
 
-.. automodule::domain2idna.core
-   :members: 
+.. automodule::domain2idna.converter
+   :members:
 
-.. autoclass:: domain2idna.core.Core
+.. autoclass:: domain2idna.converter.Converter
     :members:
