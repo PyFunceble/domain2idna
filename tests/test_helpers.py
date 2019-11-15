@@ -4,7 +4,7 @@
 domain2idna - The tool to convert a domain or a file with a list
 of domain to the famous IDNA format.
 
-This submodule will test domain2idna.helpers
+Tests the helpers.
 
 Author:
     Nissar Chababy, @funilrys, contactTATAfunilrysTODTODcom

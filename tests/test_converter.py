@@ -4,7 +4,7 @@
 domain2idna - The tool to convert a domain or a file with a list
 of domain to the famous IDNA format.
 
-This submodule will test domain2idna.core
+Tests the converter itself.
 
 Author:
     Nissar Chababy, @funilrys, contactTATAfunilrysTODTODcom
@@ -46,29 +46,29 @@ License:
 from unittest import TestCase
 from unittest import main as launch_tests
 
-from domain2idna.core import Core
+from domain2idna.converter import Converter
 
 
-class TestCore(TestCase):
+class TestConverter(TestCase):
     """
-    Tests Core.to_idna.
+    Tests Converter.
     """
 
     def test_to_idna_single(self):
         """
-        Runs and tests Core.idna.
+        Runs and tests Converter
         """
 
         domain_to_test = "ṁỵetherwallet.com"
 
         expected = "xn--etherwallet-tv8eq7f.com"
-        actual = Core(domain_to_test).to_idna()
+        actual = Converter(domain_to_test).get_converted()
 
         self.assertEqual(expected, actual)
 
     def test_to_idna_multiple(self):
         """
-        Runs and tests Core.idna.
+        Runs and tests Converter.
         """
 
         domains_to_test = [
@@ -88,7 +88,29 @@ class TestCore(TestCase):
             "xn--cyptopia-4e0d.com",
             "0.0.0.0 xn--etherwallet-tv8eq7f.com",
         ]
-        actual = Core(domains_to_test).to_idna()
+        actual = Converter(domains_to_test).get_converted()
+
+        self.assertEqual(expected, actual)
+
+    def test_to_idna_multiple_urls(self):
+        """
+        Runs and tests Converter.
+        """
+
+        domains_to_test = [
+            "http://bịllogram.com",
+            "https://bittréẋ.com/path;parameters?query#fragment",
+            "ftp://cryptopiạ.com",
+            "git://coinbȧse.com",
+        ]
+
+        expected = [
+            "http://xn--bllogram-g80d.com",
+            "https://xn--bittr-fsa6124c.com/path;parameters?query#fragment",
+            "ftp://xn--cryptopi-ux0d.com",
+            "git://xn--coinbse-30c.com",
+        ]
+        actual = Converter(domains_to_test).get_converted()
 
         self.assertEqual(expected, actual)
 
@@ -100,7 +122,7 @@ class TestCore(TestCase):
         comments = [
             "# Hello, World!",
             "# This is another commented line",
-            "cryptopiạ.com",
+            "cryptopiạ.com  # This is a comment at the end of a line.",
             "# This is a commented line with bittréẋ.com",
             "# cryptopiạ.com",
         ]
@@ -108,12 +130,12 @@ class TestCore(TestCase):
         expected = [
             "# Hello, World!",
             "# This is another commented line",
-            "xn--cryptopi-ux0d.com",
+            "xn--cryptopi-ux0d.com # This is a comment at the end of a line.",
             "# This is a commented line with bittréẋ.com",
             "# cryptopiạ.com",
         ]
 
-        actual = Core(comments).to_idna()
+        actual = Converter(comments).get_converted()
 
         self.assertEqual(expected, actual)
 
@@ -138,7 +160,7 @@ class TestCore(TestCase):
             "0.0.0.0 xn--cyptopia-4e0d.com",
         ]
 
-        actual = Core(given).to_idna()
+        actual = Converter(given).get_converted()
 
         self.assertEqual(expected, actual)
 
@@ -146,7 +168,7 @@ class TestCore(TestCase):
 
         expected = "0.0.0.0 xn--bllogram-g80d.com"
 
-        actual = Core(given).to_idna()
+        actual = Converter(given).get_converted()
 
         self.assertEqual(expected, actual)
 

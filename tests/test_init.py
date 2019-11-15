@@ -4,7 +4,7 @@
 domain2idna - The tool to convert a domain or a file with a list
 of domain to the famous IDNA format.
 
-This submodule will test domain2idna.__init__
+Tests the API endpoints.
 
 Author:
     Nissar Chababy, @funilrys, contactTATAfunilrysTODTODcom
@@ -51,7 +51,7 @@ from os import path
 from unittest import TestCase
 from unittest import main as launch_tests
 
-from domain2idna import domain, file, get
+from domain2idna import domain, file, get, get_converted
 from domain2idna.helpers import File
 
 
@@ -253,6 +253,23 @@ class TestInit(BaseStdout):
 
         expected = None
         actual = get(None)
+        self.assertEqual(expected, actual)
+
+    def test_get_converter(self):
+        """
+        This method will test domain2idna.get_converterd
+        """
+
+        expected = self.converted
+        actual = get_converted(self.domains_to_test)
+        self.assertEqual(expected, actual)
+
+        expected = self.empty_inputs
+        actual = get_converted(self.empty_inputs)
+        self.assertEqual(expected, actual)
+
+        expected = None
+        actual = get_converted(None)
         self.assertEqual(expected, actual)
 
 
