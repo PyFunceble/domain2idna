@@ -73,7 +73,11 @@ def tool():  # pragma: no cover
         )
 
         parser.add_argument(
-            "-d", "--domain", type=str, help="Set the domain to convert."
+            "-d", "--domain", type=str, help="Sets the domain to convert."
+        )
+
+        parser.add_argument(
+            "-e", "--encoding", type=str, help="Sets the encoding to use.", default="utf-8"
         )
 
         parser.add_argument(
@@ -97,6 +101,6 @@ def tool():  # pragma: no cover
         args = parser.parse_args()
 
         if args.domain:
-            domain(args.domain, args.output)
+            domain(args.domain, args.output, encoding=args.encoding)
         elif args.file:
-            file(args.file, args.output)
+            file(args.file, args.output, encoding=args.encoding)
