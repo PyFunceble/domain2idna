@@ -3,14 +3,14 @@ Requirements
 
 Here is the list of requirements:
 
--   Python >= 3.6.2  && Python < 4
+-   Python 3.6.2+ && Python < 4
 -   :code:`colorama`
 
-Python >= 3.6.2  && Python < 4
+Python 3.6.8+  && Python < 4
 ------------------------------
 
-As we want to give a priority to Python 3, Python 3 is required. The specification `>= 3.6.2` is because
-this project is tested which all version `>=3.6.2`
+The specification :code:`3.6.8+` is because we test domain2idna (daily) in all version from :code:`3.6.8`.
+Otherwise, more semantically, domain2idna is written for all Python 3.6+ version.
 
 colorama
 --------
