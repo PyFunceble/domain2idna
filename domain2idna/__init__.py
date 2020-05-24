@@ -48,12 +48,25 @@ License:
 import warnings
 
 from .converter import Converter
-from .helpers import File
 
 VERSION = "1.10.0"
 
 
-def get(domain_to_convert):
+def domain2idna(subject, encoding="utf-8"):
+    """
+    Process the conversion of the given subject.
+
+    :param subject: The subject to convert.
+    :type subject: str, list
+    :param str encoding: The encoding to provide.
+
+    :rtype: list, str
+    """
+
+    return Converter(subject, original_encoding=encoding).get_converted()
+
+
+def get(domain_to_convert):  # pragma: no cover
     """
     This function is a passerelle between the front
     and the backend of this module.
@@ -68,86 +81,15 @@ def get(domain_to_convert):
         list:
             if a list is given.
     :rtype: str, list
+
+    .. deprecated:: 1.10.0
+        Use :func:`~domain2idna.domain2idna` instead.
     """
 
     warnings.warn(
-        "`domain2idna.get` will be deprecated in future version. "
-        "Please use `domain2idna.process_conversion` instead.",
+        "`domain2idna.get` will be removed in future version. "
+        "Please use `domain2idna.domain2idna` instead.",
         DeprecationWarning,
     )
 
-    if domain_to_convert:
-        return Converter(domain_to_convert).get_converted()
-
-    return domain_to_convert
-
-
-def get_converted(subject, encoding="utf-8"):
-    """
-    Process the conversion of the given subject.
-
-    :param subject: The subject to convert.
-    :type subject: str, list
-    :param str encoding: The encoding to provide.
-
-    :rtype: list, str
-    """
-
-    return Converter(subject, original_encoding=encoding).get_converted()
-
-
-def domain(domain_to_convert, output=None, encoding="utf-8"):
-    """
-    This function convert the given domain to IDNA format.
-
-
-    :param str domain_to_convert:
-        The domain to convert.
-    :param str output:
-        The output of the conversion. If not set, we output to stdout.
-     :param str encoding:
-        The encoding to provide.
-
-    :raise ValueError:
-        If the given :code:`domain_to_convert` is empty.
-    """
-
-    if domain_to_convert and domain_to_convert.strip():
-        converted = Converter(
-            domain_to_convert, original_encoding=encoding
-        ).get_converted()
-
-        if output:
-            File(output).write(converted)
-        else:
-            print(converted)
-    else:
-        raise ValueError("<domain_to_convert> is not understable.")
-
-
-def file(file_to_convert, output=None, encoding="utf-8"):
-    """
-    This function read a file and convert each line of the file to IDNA.
-
-    :param str file_to_convert:
-        The file to convert
-    :param str output:
-        The output of the conversion. If not set, we output to stdout.
-    :param str encoding:
-        The encoding to provide.
-    """
-
-    if file_to_convert:
-        converted = []
-
-        try:
-            to_convert = File(file_to_convert).read(encoding=encoding).split("\n")
-        except (UnicodeEncodeError, UnicodeDecodeError):  # pragma: no cover
-            to_convert = File(file_to_convert).read(encoding="ISO-8859-1").split("\n")
-
-        converted = Converter(to_convert).get_converted()
-
-        if output:
-            File(output).write("\n".join(converted))
-        else:
-            print("\n".join(converted))
+    return domain2idna(domain_to_convert)

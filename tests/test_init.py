@@ -45,34 +45,13 @@ License:
 
 # pylint: disable=duplicate-code
 
-import sys
-from io import StringIO
-from os import path
 from unittest import TestCase
 from unittest import main as launch_tests
 
-from domain2idna import domain, file, get, get_converted
-from domain2idna.helpers import File
+from domain2idna import domain2idna
 
 
-class BaseStdout(TestCase):
-    """
-    This class is the one we use when we want to catch stdout.
-    """
-
-    def setUp(self):
-        """
-        Setup stdout.
-        """
-
-        sys.stdout = StringIO()
-
-    def tearDown(self):
-        sys.stdout.close()
-        sys.stdout = sys.__stdout__
-
-
-class TestInit(BaseStdout):
+class TestInit(TestCase):
     """
     This class will test domain2idna.__init__.
     """
@@ -104,172 +83,21 @@ class TestInit(BaseStdout):
 
         self.empty_inputs = ["", " ", "  ", None, False]
 
-    def test_domain(self):
-        """
-        This method will test domain2idna.domain()
-        """
-
-        BaseStdout.setUp(self)
-
-        expected = self.domain_to_test[-1]
-
-        domain(self.domain_to_test[0], None)
-        actual = sys.stdout.getvalue()
-
-        self.assertEqual(expected, actual)
-
-    def test_domain_output(self):
-        """
-        This method will test domain2idna.domain() for the case
-        that we want the output into a file.
-        """
-
-        output_file = "this_file_is_a_ghost"
-
-        expected = False
-        actual = path.isfile(output_file)
-
-        self.assertEqual(expected, actual)
-
-        expected = self.domain_to_test[-1][:-1]
-        domain(self.domain_to_test[0], output_file)
-        actual = File(output_file).read()
-
-        self.assertEqual(expected, actual)
-
-        File(output_file).delete()
-        expected = False
-        actual = path.isfile(output_file)
-
-        self.assertEqual(expected, actual)
-
-    def test_empty_domain(self):
-        """
-        This method will test domain2idna.domain() for the case
-        that an empty string is given.
-        """
-
-        for empty_domain in self.empty_inputs:
-            self.assertRaises(
-                ValueError,
-                lambda: domain(empty_domain),  # pylint: disable=cell-var-from-loop
-            )
-
-    def test_file(self):
-        """
-        This method will test domain2idna.file().
-        """
-
-        file_to_pass = "this_file_is_a_ghost"
-        BaseStdout.setUp(self)
-
-        expected = False
-        actual = path.isfile(file_to_pass)
-
-        self.assertEqual(expected, actual)
-
-        File(file_to_pass).write("\n".join(self.domains_to_test))
-
-        expected = True
-        actual = path.isfile(file_to_pass)
-
-        self.assertEqual(expected, actual)
-
-        expected = "\n".join(self.domains_to_test)
-        actual = File(file_to_pass).read()
-
-        self.assertEqual(expected, actual)
-
-        expected = "\n".join(self.converted) + "\n"
-        file(file_to_pass, None)
-        actual = sys.stdout.getvalue()
-
-        self.assertEqual(expected, actual)
-
-        File(file_to_pass).delete()
-
-        expected = False
-        actual = path.isfile(file_to_pass)
-
-        self.assertEqual(expected, actual)
-
-    def test_file_output(self):
-        """
-        This method will test domain2idna.file() for the case we want
-        the results in a file.
-        """
-
-        file_to_pass = "this_file_is_a_ghost"
-        output_file = "this_file_is_a_converted_ghost"
-
-        expected = False
-        actual = path.isfile(file_to_pass)
-
-        self.assertEqual(expected, actual)
-
-        File(file_to_pass).write("\n".join(self.domains_to_test))
-
-        expected = True
-        actual = path.isfile(file_to_pass)
-
-        self.assertEqual(expected, actual)
-
-        expected = "\n".join(self.domains_to_test)
-        actual = File(file_to_pass).read()
-
-        self.assertEqual(expected, actual)
-
-        expected = "\n".join(self.converted)
-        file(file_to_pass, output_file)
-        actual = File(output_file).read()
-
-        self.assertEqual(expected, actual)
-
-        File(file_to_pass).delete()
-        File(output_file).delete()
-
-        expected = False
-        actual = path.isfile(file_to_pass)
-
-        self.assertEqual(expected, actual)
-
-        expected = False
-        actual = path.isfile(output_file)
-
-        self.assertEqual(expected, actual)
-
     def test_get(self):
         """
         This method will test domain2idna.get
         """
 
         expected = self.converted
-        actual = get(self.domains_to_test)
+        actual = domain2idna(self.domains_to_test)
         self.assertEqual(expected, actual)
 
         expected = self.empty_inputs
-        actual = get(self.empty_inputs)
+        actual = domain2idna(self.empty_inputs)
         self.assertEqual(expected, actual)
 
         expected = None
-        actual = get(None)
-        self.assertEqual(expected, actual)
-
-    def test_get_converter(self):
-        """
-        This method will test domain2idna.get_converterd
-        """
-
-        expected = self.converted
-        actual = get_converted(self.domains_to_test)
-        self.assertEqual(expected, actual)
-
-        expected = self.empty_inputs
-        actual = get_converted(self.empty_inputs)
-        self.assertEqual(expected, actual)
-
-        expected = None
-        actual = get_converted(None)
+        actual = domain2idna(None)
         self.assertEqual(expected, actual)
 
 

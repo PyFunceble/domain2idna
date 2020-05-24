@@ -2,7 +2,7 @@ Code documentation
 ==================
 
 .. automodule:: domain2idna
-   :members: get
+   :members:
 
 Helpers
 -------

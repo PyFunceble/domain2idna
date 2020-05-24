@@ -48,7 +48,69 @@ import argparse
 from colorama import Fore, Style
 from colorama import init as initiate_colorama
 
-from . import VERSION, domain, file
+from . import VERSION
+from .converter import Converter
+from .helpers import File
+
+
+def subjects(subject_to_convert, output=None, encoding="utf-8"):
+    """
+    This function convert the given domain to IDNA format.
+
+
+    :param str domain_to_convert:
+        The domain to convert.
+    :param str output:
+        The output of the conversion. If not set, we output to stdout.
+     :param str encoding:
+        The encoding to provide.
+
+    :raise ValueError:
+        If the given :code:`domain_to_convert` is empty.
+    """
+
+    if subject_to_convert:
+        if not isinstance(subject_to_convert, list):
+            subject_to_convert = [subject_to_convert]
+
+        converted = Converter(
+            subject_to_convert, original_encoding=encoding
+        ).get_converted()
+
+        if output:
+            File(output).write("\n".join(converted))
+        else:
+            print("\n".join(converted))
+    else:
+        raise ValueError("Could not understand <subject_to_convert>.")
+
+
+def file(file_to_convert, output=None, encoding="utf-8"):
+    """
+    This function read a file and convert each line of the file to IDNA.
+
+    :param str file_to_convert:
+        The file to convert
+    :param str output:
+        The output of the conversion. If not set, we output to stdout.
+    :param str encoding:
+        The encoding to provide.
+    """
+
+    if file_to_convert:
+        converted = []
+
+        try:
+            to_convert = File(file_to_convert).read(encoding=encoding).split("\n")
+        except (UnicodeEncodeError, UnicodeDecodeError):  # pragma: no cover
+            to_convert = File(file_to_convert).read(encoding="ISO-8859-1").split("\n")
+
+        converted = Converter(to_convert).get_converted()
+
+        if output:
+            File(output).write("\n".join(converted))
+        else:
+            print("\n".join(converted))
 
 
 def tool():  # pragma: no cover
@@ -72,12 +134,18 @@ def tool():  # pragma: no cover
             ),
         )
 
+        parser.add_argument("-d", "--domain", type=str, help=argparse.SUPPRESS)
+
         parser.add_argument(
-            "-d", "--domain", type=str, help="Sets the domain to convert."
+            "-s", "--subject", nargs="+", help="Sets the subjects to convert."
         )
 
         parser.add_argument(
-            "-e", "--encoding", type=str, help="Sets the encoding to use.", default="utf-8"
+            "-e",
+            "--encoding",
+            type=str,
+            help="Sets the encoding to use.",
+            default="utf-8",
         )
 
         parser.add_argument(
@@ -100,7 +168,12 @@ def tool():  # pragma: no cover
 
         args = parser.parse_args()
 
+        subject = args.subject
+
         if args.domain:
-            domain(args.domain, args.output, encoding=args.encoding)
+            subject.extend(args.domain)
+
+        if subject:
+            subjects(subject, args.output, encoding=args.encoding)
         elif args.file:
             file(args.file, args.output, encoding=args.encoding)

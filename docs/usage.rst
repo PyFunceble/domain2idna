@@ -22,7 +22,7 @@ Here's an example which show us how domain2idna can be used a python module.
     Repository:
         https://github.com/PyFunceble/domain2idna
     """
-    from domain2idna import get as domain2idna
+    from domain2idna import domain2idna
 
     DOMAINS = [
         "bittréẋ.com", "bịllogram.com", "coinbȧse.com", "cryptopiạ.com", "cṙyptopia.com"
@@ -43,17 +43,16 @@ Here is the list of available command when calling :code:`domain2idna` from a te
 
 ::
 
-    usage: domain2idna [-h] [-d DOMAIN] [-e ENCODING] [-f FILE] [-o OUTPUT] [-v]
+    usage: domain2idna [-h] [-s SUBJECT [SUBJECT ...]] [-e ENCODING] [-f FILE] [-o OUTPUT] [-v]
 
-    domain2idna - The tool to convert a domain or a file with a list of domain to
-    the famous IDNA format.
+    domain2idna - The tool to convert a domain or a file with a list of domain to the famous IDNA format.
 
     optional arguments:
         -h, --help            show this help message and exit
-        -d DOMAIN, --domain DOMAIN
-                                Set the domain to convert.
+        -s SUBJECT [SUBJECT ...], --subject SUBJECT [SUBJECT ...]
+                                Sets the subjects to convert.
         -e ENCODING, --encoding ENCODING
-                                Set the encoding to use.
+                                Sets the encoding to use.
         -f FILE, --file FILE  Sets the file to read to get the domain(s) to convert.
         -o OUTPUT, --output OUTPUT
                                 Sets the file where we write the converted domain(s).
