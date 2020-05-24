@@ -1,5 +1,5 @@
 {% set name = "domain2idna" %}
-{% set version = "1.10.0" %}
+{% set version = "%%version%%" %}
 
 package:
   name: "{{ name|lower }}"
