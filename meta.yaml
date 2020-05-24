@@ -1,5 +1,5 @@
 {% set name = "domain2idna" %}
-{% set version = "%%version%%" %}
+{% set version = "1.10.0" %}
 
 package:
   name: "{{ name|lower }}"
@@ -32,8 +32,7 @@ test:
   commands:
     - domain2idna --version
     - domain2idna --help
-    - domain2idna -d bittréẋ.com
-    -
+    - domain2idna -s bittréẋ.com
 
 about:
   home: "https://github.com/PyFunceble/domain2idna"
