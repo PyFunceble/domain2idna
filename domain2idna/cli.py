@@ -139,7 +139,7 @@ def tool():  # pragma: no cover
         parser.add_argument(
             "-s",
             "--subject",
-            type=list,
+            type=str,
             nargs="+",
             help="Sets the subjects to convert.",
             default=[]
