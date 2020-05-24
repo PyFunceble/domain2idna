@@ -55,6 +55,7 @@ jobs:
         - echo "Hello, World!"
       after_success:
         - echo "Hello, World!"
+      if: branch = master
       deploy:
         provider: pypi
         user: funilrys
@@ -62,9 +63,6 @@ jobs:
           secure: ifEima9Piik3Nqm6ttnrtXGICoiYhFpx9qTZqnVtNZd9Joeg2uzC2B11d53p+jbvzID0jWR1GBTM4+nzRfSDFuFjcuiIgzlQIZYinp/j0xQJqLuupPa3rWpBykP0N8wk5FNRc4sc1+26b3eaW9xm/1d0POdEBhZhi4MadOo6hHJIbMv00ZCyQxkxWB/LkxXhuqmj+IbtsGiAm13ESCKCaxR1TqnyKL1OPoVFiPgqlxBYG49YwskhLQ8RCh+bB86PQ0bBc31NCXJsuFWjJc1Lso+7Af29L7XegKxFmr13oSQ8oUsv3VHVh0yZyEkPbwOs65rTkWGDr+W8OQHd7nOaJ/MSobX2MbB8k6J76CicG4Q0xzXpw1Ie4wrvO6TTpOBGftpEvt7wlgpF0D6JqHLA27vmpM9x6KgeBI1DNb4eQDXDfNa8N1HM2rL1rEHxUjBJ7YpdS5hJR01/dfi2lPVBRgOnt4RRmz7a3h9UexlgAeUJ9rnIUxAAVR42bwS7p7JE6cykchIOlHq22pQR8H1mN24l/qk9wQs+W+OJ7KO+AcGQfey/ZpuzmzYWoDKF8Epm9MrRQ5bHX+RFtx+6jWkSXBN/O9Wa/syC5O+oj6sZygN1OMTvsmlkN774m0Vu3jUcsUIWnQY/uj31yTTa5IAzmpK0jsvEwnblfmjeaWFssco=
         distributions: sdist bdist_wheel
         skip_existing: true
-        on:
-          all_branches: true
-          condition: "${TRAVIS_BRANCH} =~ ^master$"
 
 install:
   - export PATH="${HOME}/miniconda/bin:${PATH}"
