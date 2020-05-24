@@ -47,6 +47,7 @@ What can domain2idna do ?
 -------------------------
 
 - Read a given domain and convert it to the Punycode/IDNA format.
+- Read a given URL and convert its base to Punycode/IDNA format.
 - Read a file and convert all non-commented line to the Punycode/IDNA format.
 - Print the converted data on the screen.
 - Save into a file the converted data.
@@ -62,8 +63,8 @@ License
 
     MIT License
 
-    Copyright (c) 2018-2019 Nissar Chababy
-    Copyright (c) 2019 PyFunceble
+    Copyright (c) 2019, 2020 PyFunceble
+    Copyright (c) 2018, 2019, 2020 Nissar Chababy
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
