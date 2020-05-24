@@ -137,7 +137,12 @@ def tool():  # pragma: no cover
         parser.add_argument("-d", "--domain", type=str, help=argparse.SUPPRESS)
 
         parser.add_argument(
-            "-s", "--subject", nargs="+", help="Sets the subjects to convert."
+            "-s",
+            "--subject",
+            type=list,
+            nargs="+",
+            help="Sets the subjects to convert.",
+            default=[]
         )
 
         parser.add_argument(
@@ -171,7 +176,7 @@ def tool():  # pragma: no cover
         subject = args.subject
 
         if args.domain:
-            subject.extend(args.domain)
+            subject.append(args.domain)
 
         if subject:
             subjects(subject, args.output, encoding=args.encoding)
