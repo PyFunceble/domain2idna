@@ -1,0 +1,49 @@
+{% set name = "domain2idna" %}
+{% set version = "%%version%%" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  path: ./
+
+build:
+  number: 0
+  entry_points:
+    - domain2idna=domain2idna.cli:tool
+  noarch: python
+  script: "{{ PYTHON }} -m pip install . -vv"
+
+requirements:
+  host:
+    - colorama >=0.4.1
+    - pip
+    - python
+    - setuptools >=40.8.0
+  run:
+    - colorama >=0.4.1
+    - python
+    - setuptools >=40.8.0
+
+test:
+  imports:
+    - domain2idna
+  commands:
+    - domain2idna --version
+    - domain2idna --help
+    - domain2idna -d bittréẋ.com
+    -
+
+about:
+  home: "https://github.com/PyFunceble/domain2idna"
+  license: MIT
+  license_family: MIT
+  license_file:
+  summary: "The tool to convert a domain or a file with a list of domain to the famous IDNA format."
+  doc_url:
+  dev_url:
+
+extra:
+  recipe-maintainers:
+    - funilrys

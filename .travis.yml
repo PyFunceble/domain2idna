@@ -63,11 +63,27 @@ jobs:
           secure: ifEima9Piik3Nqm6ttnrtXGICoiYhFpx9qTZqnVtNZd9Joeg2uzC2B11d53p+jbvzID0jWR1GBTM4+nzRfSDFuFjcuiIgzlQIZYinp/j0xQJqLuupPa3rWpBykP0N8wk5FNRc4sc1+26b3eaW9xm/1d0POdEBhZhi4MadOo6hHJIbMv00ZCyQxkxWB/LkxXhuqmj+IbtsGiAm13ESCKCaxR1TqnyKL1OPoVFiPgqlxBYG49YwskhLQ8RCh+bB86PQ0bBc31NCXJsuFWjJc1Lso+7Af29L7XegKxFmr13oSQ8oUsv3VHVh0yZyEkPbwOs65rTkWGDr+W8OQHd7nOaJ/MSobX2MbB8k6J76CicG4Q0xzXpw1Ie4wrvO6TTpOBGftpEvt7wlgpF0D6JqHLA27vmpM9x6KgeBI1DNb4eQDXDfNa8N1HM2rL1rEHxUjBJ7YpdS5hJR01/dfi2lPVBRgOnt4RRmz7a3h9UexlgAeUJ9rnIUxAAVR42bwS7p7JE6cykchIOlHq22pQR8H1mN24l/qk9wQs+W+OJ7KO+AcGQfey/ZpuzmzYWoDKF8Epm9MrRQ5bHX+RFtx+6jWkSXBN/O9Wa/syC5O+oj6sZygN1OMTvsmlkN774m0Vu3jUcsUIWnQY/uj31yTTa5IAzmpK0jsvEwnblfmjeaWFssco=
         distributions: sdist bdist_wheel
         skip_existing: true
+    - os: linux
+      dist: bionic
+      name: "Deployment to Anaconda Cloud"
+      env:
+        - PYTHON_VERSION="3.8.3"
+        - TOXENV="py38"
+      language: generic
+      before_install:
+        - wget https://raw.githubusercontent.com/PyFunceble/conda-builder/master/build-and-push-it -O ${TRAVIS_BUILD_DIR}/build-and-push-it
+      before_script:
+        - version=$(python setup.py --version); sed -i "s/%%version%%/${version}/g" meta.yaml
+        - chmod +x build-and-push-it
+        - export CONDA_BUILD_DIR=${TRAVIS_BUILD_DIR}
+      script:
+        - ./build-and-push-it "$(python setup.py --name)" "$(python setup.py --version)"
+      if: branch = master
 
 install:
   - export PATH="${HOME}/miniconda/bin:${PATH}"
-  - if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then wget https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O miniconda.sh; else wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh; fi
-  - bash miniconda.sh -b -p ${HOME}/miniconda
+  - if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then wget https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O ${HOME}/miniconda.sh; else wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ${HOME}/miniconda.sh; fi
+  - bash ${HOME}/miniconda.sh -b -p ${HOME}/miniconda
   - hash -r
   - conda config --set always_yes yes --set changeps1 no
   - conda update -q conda
