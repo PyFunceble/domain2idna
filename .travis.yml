@@ -43,10 +43,10 @@ jobs:
         - PYTHON_VERSION="3.6.10"
         - TOXENV="py36"
       language: generic
-    - stage: "Deployements"
+    - stage: "Deployments"
       os: linux
       dist: bionic
-      name: "Deployement to PyPi"
+      name: "Deployment to PyPi"
       env:
         - PYTHON_VERSION="3.8.3"
         - TOXENV="py38"
