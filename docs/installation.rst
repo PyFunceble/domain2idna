@@ -51,6 +51,12 @@ From GitHub
 
 .. _pip documentation: https://pip.pypa.io/en/stable/reference/pip_install/?highlight=--user#cmdoption-user
 
+Using :code:`conda`
+-------------------
+
+::
+
+   $ conda install -c pyfunceble domain2idna
 
 Pure Python method
 ------------------
