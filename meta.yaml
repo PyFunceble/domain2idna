@@ -17,14 +17,14 @@ build:
 
 requirements:
   host:
-    - colorama >=0.4.1
+    - colorama
     - pip
     - python
-    - setuptools >=40.8.0
+    - setuptools
   run:
-    - colorama >=0.4.1
+    - colorama
     - python
-    - setuptools >=40.8.0
+    - setuptools
 
 test:
   imports:
