@@ -142,7 +142,7 @@ def tool():  # pragma: no cover
             type=str,
             nargs="+",
             help="Sets the subjects to convert.",
-            default=[]
+            default=[],
         )
 
         parser.add_argument(

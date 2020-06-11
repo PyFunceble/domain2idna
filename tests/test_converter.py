@@ -78,6 +78,7 @@ class TestConverter(TestCase):
             "coinbȧse.com",
             "cṙyptopia.com",
             "0.0.0.0 ṁỵetherwallet.com",
+            "0.0.0.0/8",
         ]
 
         expected = [
@@ -87,6 +88,7 @@ class TestConverter(TestCase):
             "xn--coinbse-30c.com",
             "xn--cyptopia-4e0d.com",
             "0.0.0.0 xn--etherwallet-tv8eq7f.com",
+            "0.0.0.0/8",
         ]
         actual = Converter(domains_to_test).get_converted()
 

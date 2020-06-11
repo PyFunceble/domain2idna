@@ -49,7 +49,7 @@ import warnings
 
 from .converter import Converter
 
-VERSION = "1.10.2"
+VERSION = "1.11.0"
 
 
 def domain2idna(subject, encoding="utf-8"):

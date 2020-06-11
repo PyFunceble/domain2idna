@@ -85,7 +85,7 @@ class Converter:
         if subject in self.to_ignore:
             return subject
 
-        if "/" not in subject:
+        if "://" not in subject:
             try:
                 return subject.encode("idna").decode(original_encoding)
             except UnicodeError:  # pragma: no cover
@@ -120,7 +120,7 @@ class Converter:
         ):
             return subject
 
-        if "#" in subject and "/" not in subject:
+        if "#" in subject and "://" not in subject:
             comment = " " + subject[subject.find("#") :]
             subject = subject[: subject.find("#")].strip()
         else:
