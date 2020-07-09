@@ -91,6 +91,12 @@ class Converter:
             except UnicodeError:  # pragma: no cover
                 return subject
 
+        if subject.startswith("://"):
+            to_convert = urlparse(f"https://{subject[3:]}").netloc
+            converted = self.convert_to_idna(to_convert)
+
+            return subject.replace(to_convert, converted)
+
         parsed_url = urlparse(subject)
         result = f"{parsed_url.scheme}://{self.convert_to_idna(parsed_url.netloc)}{parsed_url.path}"
 

@@ -104,6 +104,7 @@ class TestConverter(TestCase):
             "https://bittréẋ.com/path;parameters?query#fragment",
             "ftp://cryptopiạ.com",
             "git://coinbȧse.com",
+            "://coinbȧse.com/hello_world",
         ]
 
         expected = [
@@ -111,6 +112,7 @@ class TestConverter(TestCase):
             "https://xn--bittr-fsa6124c.com/path;parameters?query#fragment",
             "ftp://xn--cryptopi-ux0d.com",
             "git://xn--coinbse-30c.com",
+            "://xn--coinbse-30c.com/hello_world",
         ]
         actual = Converter(domains_to_test).get_converted()
 
