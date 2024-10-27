@@ -82,6 +82,14 @@ jobs:
         run: |
           tox -c tox.ini
 
+      - name: Upload Coverage
+        continue-on-error: true
+        run: |
+          coveralls
+        env:
+          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+          COVERALLS_PARALLEL: true
+
   coveralls:
     needs: test
     name: Finish Coveralls
