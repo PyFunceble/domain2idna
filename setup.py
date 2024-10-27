@@ -37,21 +37,9 @@ License:
 """
 
 import os
-from re import compile as comp
 import re
-from unittest import TestLoader
 
 from setuptools import setup
-
-
-def test_suite():
-    """
-    This method will discover and run all the test
-    """
-
-    test_loader = TestLoader()
-    tests = test_loader.discover("tests", pattern="test_*.py")
-    return tests
 
 
 def get_requirements(*, mode="standard"):

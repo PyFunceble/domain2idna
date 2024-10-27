@@ -48,7 +48,7 @@ import argparse
 from colorama import Fore, Style
 from colorama import init as initiate_colorama
 
-from . import VERSION
+from .__about__ import __version__
 from .converter import Converter
 from .helpers import File
 
@@ -169,7 +169,7 @@ def tool():  # pragma: no cover
         )
 
         parser.add_argument(
-            "-v", "--version", action="version", version="%(prog)s " + VERSION
+            "-v", "--version", action="version", version="%(prog)s " + __version__
         )
 
         args = parser.parse_args()

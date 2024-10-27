@@ -45,8 +45,6 @@ import warnings
 
 from .converter import Converter
 
-VERSION = "1.12.1"
-
 
 def domain2idna(subject, encoding="utf-8"):
     """
