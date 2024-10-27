@@ -66,6 +66,18 @@ class TestConverter(TestCase):
 
         self.assertEqual(expected, actual)
 
+    def test_single_very_long_fqdn(self):
+        """
+        Tests the conversion of a very long FQDN.
+        """
+
+        domain_to_test = "ạ" + "a" * 955 + ".com"
+
+        expected = "ạ" + "a" * 955 + ".com"
+        actual = Converter(domain_to_test).get_converted()
+
+        self.assertEqual(expected, actual)
+
     def test_to_idna_multiple(self):
         """
         Runs and tests Converter.
