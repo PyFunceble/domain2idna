@@ -12,8 +12,8 @@ omit =
     setup.py
 
 [report]
-# This should be False one we move into production
-skip_covered = True
+skip_covered = False
+show_missing = True
 
 # Regexes for lines to exclude from consideration
 exclude_lines =
@@ -33,6 +33,7 @@ exclude_lines =
 
 
 ignore_errors = True
+fail_under = 70
 
 [html]
 directory = coverage_html_report

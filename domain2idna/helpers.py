@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 """
 domain2idna - The tool to convert a domain or a file with a list
 of domain to the famous IDNA format.

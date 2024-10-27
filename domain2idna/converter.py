@@ -98,7 +98,10 @@ class Converter:
             return subject.replace(to_convert, converted)
 
         parsed_url = urlparse(subject)
-        result = f"{parsed_url.scheme}://{self.convert_to_idna(parsed_url.netloc)}{parsed_url.path}"
+        result = (
+            f"{parsed_url.scheme}://{self.convert_to_idna(parsed_url.netloc)}"
+            f"{parsed_url.path}"
+        )
 
         if parsed_url.params:
             result += f";{parsed_url.params}"

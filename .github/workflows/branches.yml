@@ -1,0 +1,149 @@
+name: Branches Development Workflow
+on:
+  pull_request:
+    branches:
+      - "**"
+      - "!master"
+  push:
+    branches:
+      - "**"
+      - "!master"
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  lint:
+    name: Lint domain2idna
+
+    runs-on: "${{ matrix.os }}"
+
+    strategy:
+      fail-fast: false
+      matrix:
+        python_version:
+          - "3.12"
+        os:
+          - ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        name: Clone repository
+
+      - name: Set up Python ${{ matrix.python_version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python_version }}
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install --upgrade .[dev]
+          pip install pylint
+
+      - name: Lint with Pylint
+        run: pylint domain2idna
+
+  test:
+    needs: [lint]
+    name: "[${{ matrix.os }}-py${{ matrix.python_version }}] Test domain2idna"
+
+    runs-on: "${{ matrix.os }}"
+
+    strategy:
+      fail-fast: false
+      matrix:
+        python_version:
+          - "3.9"
+          - "3.10"
+          - "3.11"
+          - "3.12"
+          - "3.13"
+        os:
+          - ubuntu-latest
+          - macos-latest
+          - windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        name: Clone repository
+
+      - name: Set up Python ${{ matrix.python_version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python_version }}
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install --upgrade .[test]
+          pip install coveralls
+
+      - name: Test as defined by tox.ini
+        run: |
+          tox -c tox.ini
+
+  coveralls:
+    needs: test
+    name: Finish Coveralls
+
+    runs-on: "${{ matrix.os }}"
+
+    strategy:
+      fail-fast: false
+      matrix:
+        python_version:
+          - "3.12"
+        os:
+          - ubuntu-latest
+
+    steps:
+      - name: Sending finish flag to coveralls.io
+        uses: coverallsapp/github-action@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          parallel-finished: true
+
+  cli-test:
+    needs: [lint]
+    name: "[${{ matrix.os }}-py${{ matrix.python_version }}] CLI Test"
+
+    runs-on: "${{ matrix.os }}"
+
+    strategy:
+      fail-fast: false
+      matrix:
+        python_version:
+          - "3.9"
+          - "3.10"
+          - "3.11"
+          - "3.12"
+          - "3.13"
+        os:
+          - ubuntu-latest
+          - macos-latest
+          - windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        name: Clone repository
+
+      - name: Set up Python ${{ matrix.python_version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python_version }}
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install --upgrade .
+
+      - name: Run inline test
+        run: |
+          domain2idna -d аррӏе.com
+          domain2idna -s аррӏе.com google.com
+
+      - name: Run test from file
+        run: |
+          domain2idna -f .ci/list_of_domain
+          domain2idna -f .ci/list_of_domain -o list_of_domain_converted
+          cat list_of_domain_converted

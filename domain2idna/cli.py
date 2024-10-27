@@ -121,6 +121,7 @@ def tool():  # pragma: no cover
     if __name__ == "domain2idna.cli":
         initiate_colorama(autoreset=True)
 
+        # pylint: disable=consider-using-f-string
         parser = argparse.ArgumentParser(
             description="domain2idna - The tool to convert a domain or a file with \
             a list of domain to the famous IDNA format.",

@@ -6,7 +6,7 @@ Author:
     Nissar Chababy, @funilrys, contactTATAfunilrysTODTODcom
 
 Contributors:
-    Let's contribute to domains2idna!!
+    Let's contribute to domain2idna!!
 
 Repository:
     https://github.com/PyFunceble/domain2idna
@@ -35,7 +35,10 @@ License:
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
 """
+
+import os
 from re import compile as comp
+import re
 from unittest import TestLoader
 
 from setuptools import setup
@@ -51,49 +54,65 @@ def test_suite():
     return tests
 
 
-def get_requirements():
+def get_requirements(*, mode="standard"):
     """
     This function extract all requirements from requirements.txt.
     """
 
-    try:
-        with open("requirements.txt") as file:
-            requirements = file.read().splitlines()
-    except FileNotFoundError:
-        with open("../requirements.txt") as file:
-            requirements = file.read().splitlines()
+    mode2files = {
+        "standard": ["requirements.txt"],
+        "dev": ["requirements.dev.txt"],
+        "test": ["requirements.test.txt"],
+    }
 
-    return requirements
+    mode2files["full"] = [y for x in mode2files.values() for y in x]
+
+    result = set()
+
+    for file in mode2files[mode]:
+        with open(file, "r", encoding="utf-8") as file_stream:
+            for line in file_stream:
+                line = line.strip()
+
+                if not line or line.startswith("#"):
+                    continue
+
+                if "#" in line:
+                    line = line[: line.find("#")].strip()
+
+                if not line:
+                    continue
+
+                result.add(line)
+
+    return list(result)
 
 
 def get_version():
     """
-    This function will extract the version from domain2idna/__init__.py
+    This function will extract the version from domain2idna/__about__.py
     """
 
-    to_match = comp(r'VERSION\s=\s"(.*)"\n')
+    to_match = re.compile(r'__version__.*=\s+"(.*)"')
 
-    try:
-        extracted = to_match.findall(
-            open("domain2idna/__init__.py", encoding="utf-8").read()
-        )[0]
-    except FileNotFoundError:
-        extracted = to_match.findall(
-            open("../domain2idna/__init__.py", encoding="utf-8").read()
-        )[0]
+    if os.path.exists("domain2idna/__about__.py"):
+        about_path = "domain2idna/__about__.py"
+    elif os.path.exists("../domain2idna/__about__.py"):
+        about_path = "../domain2idna/__about__.py"
+    else:
+        raise FileNotFoundError("No __about__.py found.")
 
-    return ".".join([x for x in extracted.split(".") if x.isdigit()])
+    with open(about_path, encoding="utf-8") as file_stream:
+        extracted = to_match.findall(file_stream.read())[0]
 
+    return extracted
 
-def get_long_description():
+def get_long_description():  # pragma: no cover
     """
     This function return the long description.
     """
 
-    try:
-        return open("README.rst", encoding="utf-8").read()
-    except FileNotFoundError:
-        return open("../README.rst", encoding="utf-8").read()
+    return open("README.md", encoding="utf-8").read()
 
 
 if __name__ == "__main__":
@@ -104,7 +123,13 @@ if __name__ == "__main__":
         description="The tool to convert a domain or a file with a list of domain to the "
         "famous IDNA format.",
         long_description=get_long_description(),
-        install_requires=get_requirements(),
+        long_description_content_type="text/markdown",
+        install_requires=get_requirements(mode="standard"),
+        extras_require={
+            "test": get_requirements(mode="test"),
+            "dev": get_requirements(mode="dev"),
+            "full": get_requirements(mode="full"),
+        },
         author="funilrys",
         author_email="contact@funilrys.com",
         license="MIT https://raw.githubusercontent.com/PyFunceble/domain2idna/master/LICENSE",
@@ -121,6 +146,5 @@ if __name__ == "__main__":
             "Programming Language :: Python :: 3",
             "License :: OSI Approved :: MIT License",
         ],
-        test_suite="setup.test_suite",
         entry_points={"console_scripts": ["domain2idna=domain2idna.cli:tool"]},
     )
