@@ -82,6 +82,7 @@ class TestCLI(BaseStdout):
         Setup all cross tests variables.
         """
 
+        super().setUp()
         self.domain_to_test = ["ṁỵetherwallet.com", "xn--etherwallet-tv8eq7f.com\n"]
 
         self.domains_to_test = [
@@ -109,7 +110,6 @@ class TestCLI(BaseStdout):
         This method will test domain2idna.domain()
         """
 
-        BaseStdout.setUp(self)
 
         expected = self.domain_to_test[-1]
 
@@ -161,7 +161,6 @@ class TestCLI(BaseStdout):
         """
 
         file_to_pass = "this_file_is_a_ghost"
-        BaseStdout.setUp(self)
 
         expected = False
         actual = path.isfile(file_to_pass)
