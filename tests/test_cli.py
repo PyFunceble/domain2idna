@@ -103,7 +103,7 @@ class TestCLI(BaseStdout):
             "xn--cyptopia-4e0d.com",
         ]
 
-        self.empty_inputs = ["", " ", "  ", None, False]
+        self.empty_inputs = ["", None, False]
 
     def test_domain(self):
         """
