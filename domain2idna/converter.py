@@ -56,7 +56,7 @@ class Converter:
     """
 
     to_ignore = [
-        "0.0.0.0",
+        "0.0.0.0",  # nosec: B104 # This has nothing to do with interfaces binding.
         "localhost",
         "127.0.0.1",
         "localdomain",

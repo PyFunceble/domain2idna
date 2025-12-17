@@ -63,7 +63,7 @@ class TestFile(TestCase):
         expected = "Hello, World! I'm PyFunceble"
         File("hi").write(expected)
 
-        with open("hi") as file:
+        with open("hi", encoding="utf-8") as file:
             actual = file.read()
 
         self.assertEqual(expected, actual)
@@ -82,7 +82,7 @@ class TestFile(TestCase):
         expected = "Hello, World! I'm PyFunceble"
         File("hi").write(expected)
 
-        with open("hi") as file:
+        with open("hi", encoding="utf-8") as file:
             actual = file.read()
 
         self.assertEqual(expected, actual)
@@ -90,7 +90,7 @@ class TestFile(TestCase):
         expected = "Hello, World! Python is great, you should consider learning it!"
         File("hi").write(expected)
 
-        with open("hi") as file:
+        with open("hi", encoding="utf-8") as file:
             actual = file.read()
 
         self.assertEqual(expected, actual)
